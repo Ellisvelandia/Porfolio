@@ -34,12 +34,12 @@ const Skillset = () => {
 
   return (
     <PageLayout>
-      <div className="flex justify-center mb-8 space-x-4">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 px-2 mb-6 md:mb-8">
         {categories.map(category => (
           <button
             key={category.id}
             onClick={() => setFilter(category.id)}
-            className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+            className={`px-2 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-lg transition-colors duration-200 ${
               filter === category.id
                 ? 'bg-blue-500 text-white'
                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -49,7 +49,7 @@ const Skillset = () => {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 px-2 md:px-4">
         {filteredSkills.map((skill, index) => (
           <SkillCard key={index} {...skill} />
         ))}
