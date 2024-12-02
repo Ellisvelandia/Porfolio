@@ -10,9 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const carouselRef = useRef(null);
   const projectsRef = useRef([]);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const projects = [
     {
@@ -57,9 +68,14 @@ const Projects = () => {
           gsap.set(card, {
             opacity: 0.3,
             scale: 0.85,
-            rotationY: i < currentIndex ? -15 : 15,
-            x: i < currentIndex ? -100 : 100,
-            transformOrigin: i < currentIndex ? "right center" : "left center",
+            ...(isMobile ? {
+              y: i < currentIndex ? -100 : 100,
+              transformOrigin: i < currentIndex ? "bottom center" : "top center",
+            } : {
+              x: i < currentIndex ? -100 : 100,
+              rotationY: i < currentIndex ? -15 : 15,
+              transformOrigin: i < currentIndex ? "right center" : "left center",
+            })
           });
         }
       });
@@ -91,16 +107,24 @@ const Projects = () => {
       timeline.to(projectsRef.current[currentIndex], {
         opacity: 0.3,
         scale: 0.85,
-        rotationY: direction === 'next' ? -15 : 15,
-        x: direction === 'next' ? -100 : 100,
+        ...(isMobile ? {
+          y: direction === 'next' ? -100 : 100,
+        } : {
+          x: direction === 'next' ? -100 : 100,
+          rotationY: direction === 'next' ? -15 : 15,
+        })
       });
 
       // Animate in new card
       timeline.to(projectsRef.current[newIndex], {
         opacity: 1,
         scale: 1,
-        rotationY: 0,
-        x: 0,
+        ...(isMobile ? {
+          y: 0,
+        } : {
+          x: 0,
+          rotationY: 0,
+        })
       }, "<");
 
       // Update perspective for other cards
@@ -109,13 +133,50 @@ const Projects = () => {
           timeline.to(card, {
             opacity: 0.3,
             scale: 0.85,
-            rotationY: i < newIndex ? -15 : 15,
-            x: i < newIndex ? -100 : 100,
+            ...(isMobile ? {
+              y: i < newIndex ? -100 : 100,
+            } : {
+              x: i < newIndex ? -100 : 100,
+              rotationY: i < newIndex ? -15 : 15,
+            })
           }, "<");
         }
       });
 
       setCurrentIndex(newIndex);
+    }
+  };
+
+  const handlePrevious = () => {
+    navigateCarousel('prev');
+  };
+
+  const handleNext = () => {
+    navigateCarousel('next');
+  };
+
+  // Touch handlers for mobile swipe
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isSignificantMove = Math.abs(distance) > 50;
+
+    if (isSignificantMove) {
+      if (distance > 0) {
+        navigateCarousel('next');
+      } else {
+        navigateCarousel('prev');
+      }
     }
   };
 
@@ -135,29 +196,56 @@ const Projects = () => {
           }}
         />
 
-        {/* Navigation Controls */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-10 px-4 md:px-8">
-          <button
-            onClick={() => navigateCarousel('prev')}
-            className={`nav-button ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
-            disabled={currentIndex === 0}
-          >
-            <FontAwesomeIcon 
-              icon={faChevronLeft} 
-              className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
-            />
-          </button>
-          <button
-            onClick={() => navigateCarousel('next')}
-            className={`nav-button ${currentIndex === projects.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
-            disabled={currentIndex === projects.length - 1}
-          >
-            <FontAwesomeIcon 
-              icon={faChevronRight} 
-              className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
-            />
-          </button>
-        </div>
+        {/* Desktop Navigation Controls - Hidden on Mobile */}
+        {!isMobile && (
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-10 px-4 md:px-8">
+            <button
+              onClick={() => navigateCarousel('prev')}
+              className={`nav-button ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
+              disabled={currentIndex === 0}
+            >
+              <FontAwesomeIcon 
+                icon={faChevronLeft} 
+                className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
+              />
+            </button>
+            <button
+              onClick={() => navigateCarousel('next')}
+              className={`nav-button ${currentIndex === projects.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
+              disabled={currentIndex === projects.length - 1}
+            >
+              <FontAwesomeIcon 
+                icon={faChevronRight} 
+                className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
+              />
+            </button>
+          </div>
+        )}
+
+        {/* Mobile Navigation Controls */}
+        {isMobile && (
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4 z-10">
+            <button
+              onClick={handlePrevious}
+              className={`p-3 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <div className={`px-4 py-2 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark backdrop-blur-sm text-sm`}>
+              {currentIndex + 1} / {projects.length}
+            </div>
+            <button
+              onClick={handleNext}
+              className={`p-3 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {/* Projects Carousel */}
         <div 
@@ -167,6 +255,9 @@ const Projects = () => {
             perspective: "1500px",
             transformStyle: "preserve-3d"
           }}
+          onTouchStart={isMobile ? onTouchStart : undefined}
+          onTouchMove={isMobile ? onTouchMove : undefined}
+          onTouchEnd={isMobile ? onTouchEnd : undefined}
         >
           {projects.map((project, index) => (
             <div
@@ -175,10 +266,15 @@ const Projects = () => {
               className="absolute w-full max-w-5xl px-4 md:px-8 transition-transform duration-700"
               style={{
                 opacity: index === currentIndex ? 1 : 0.3,
-                transform: `translateX(${(index - currentIndex) * 100}%) 
-                           scale(${index === currentIndex ? 1 : 0.85})
-                           rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
-                transformOrigin: index < currentIndex ? "right center" : "left center",
+                transform: isMobile
+                  ? `translateY(${(index - currentIndex) * 100}%) 
+                     scale(${index === currentIndex ? 1 : 0.85})`
+                  : `translateX(${(index - currentIndex) * 100}%) 
+                     scale(${index === currentIndex ? 1 : 0.85})
+                     rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
+                transformOrigin: isMobile
+                  ? (index < currentIndex ? "bottom center" : "top center")
+                  : (index < currentIndex ? "right center" : "left center"),
               }}
             >
               <ProjectCard 
@@ -188,6 +284,18 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {/* Mobile Swipe Indicator - Only shown on mobile */}
+        {isMobile && (
+          <div className="absolute bottom-24 left-0 right-0 flex justify-center items-center text-matrix-accent-dark/60">
+            <div className="text-sm flex flex-col items-center gap-2">
+              <span>Swipe or use buttons to navigate</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
+        )}
       </div>
     </PageLayout>
   );

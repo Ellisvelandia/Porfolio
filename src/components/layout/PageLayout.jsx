@@ -69,7 +69,7 @@ const PageLayout = ({ children }) => {
         />
 
         {/* Glass effect overlay */}
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[1px] dark:bg-black/80" />
+        <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px] dark:bg-black/80" />
       </div>
 
       {/* Content */}
