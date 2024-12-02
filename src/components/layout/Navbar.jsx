@@ -117,8 +117,12 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className={`${
                         isActive(item.path)
-                          ? 'text-blue-400 bg-black bg-opacity-50'
-                          : 'text-white hover:text-blue-300 hover:bg-black hover:bg-opacity-50'
+                          ? isDark 
+                            ? 'text-blue-400 bg-black bg-opacity-50'
+                            : 'text-blue-600 bg-white bg-opacity-70'
+                          : isDark
+                            ? 'text-white hover:text-blue-300 hover:bg-black hover:bg-opacity-50'
+                            : 'text-gray-800 hover:text-blue-600 hover:bg-white hover:bg-opacity-70'
                       } block px-6 py-3 rounded-lg text-xl font-semibold transition-all duration-200 backdrop-blur-sm`}
                     >
                       {item.name}
@@ -126,7 +130,11 @@ const Navbar = () => {
                   ))}
                   <button
                     onClick={toggleTheme}
-                    className="w-full text-left px-6 py-3 rounded-lg text-xl font-semibold text-white hover:text-blue-300 hover:bg-black hover:bg-opacity-50 transition-all duration-200 backdrop-blur-sm"
+                    className={`w-full text-left px-6 py-3 rounded-lg text-xl font-semibold ${
+                      isDark 
+                        ? 'text-white hover:text-blue-300 hover:bg-black hover:bg-opacity-50' 
+                        : 'text-gray-800 hover:text-blue-600 hover:bg-white hover:bg-opacity-70'
+                    } transition-all duration-200 backdrop-blur-sm`}
                   >
                     <FontAwesomeIcon 
                       icon={isDark ? faCloudSun : faCloudMoon} 
