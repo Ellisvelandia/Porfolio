@@ -97,7 +97,7 @@ const Navbar = () => {
                 className="flex items-center space-x-2 transition-colors duration-200 dark:text-[#00FF00] text-gray-900"
               >
                 <FontAwesomeIcon icon={faCode} className="text-xl" />
-                <span className="font-mono font-bold text-lg tracking-wider">ELLIS</span>
+                <span className="font-mono font-bold text-xs md:text-base tracking-wider">ELLIS</span>
               </Link>
             </div>
 
