@@ -13,16 +13,18 @@ function App() {
     <ThemeProvider>
       <Router>
         <div 
-          className="min-h-screen"
+          className="flex flex-col min-h-screen"
         >
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/mission" element={<Mission />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skillset" element={<Skillset />} />
-            <Route path="/projects" element={<Projects />} />
-          </Routes>
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/mission" element={<Mission />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/skillset" element={<Skillset />} />
+              <Route path="/projects" element={<Projects />} />
+            </Routes>
+          </main>
         </div>
       </Router>
     </ThemeProvider>

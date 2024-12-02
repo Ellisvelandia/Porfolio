@@ -2,8 +2,8 @@ import React from 'react';
 
 const PageLayout = ({ children }) => {
   return (
-    <div className="min-h-screen py-20 px-4 bg-[url('/menu.jpg')] dark:bg-[url('/wall.jpg')] bg-cover bg-center bg-no-repeat">
-      <div className="max-w-4xl mx-auto">
+    <div className="relative min-h-screen w-full bg-[url('/menu.jpg')] dark:bg-[url('/wall.jpg')] bg-fixed bg-cover bg-center bg-no-repeat">
+      <div className="relative h-full w-full px-4 pt-24 md:pt-28">
         {children}
       </div>
     </div>

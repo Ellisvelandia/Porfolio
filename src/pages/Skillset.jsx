@@ -34,7 +34,6 @@ const Skillset = () => {
 
   return (
     <PageLayout>
-      <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Skills</h1>
       <div className="flex justify-center mb-8 space-x-4">
         {categories.map(category => (
           <button

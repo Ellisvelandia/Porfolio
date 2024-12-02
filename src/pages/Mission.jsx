@@ -28,7 +28,6 @@ const Mission = () => {
 
   return (
     <PageLayout>
-      <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Mission</h1>
       <div className="space-y-6">
         {missions.map((mission) => (
           <MissionCard
