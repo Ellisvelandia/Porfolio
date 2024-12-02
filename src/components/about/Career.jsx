@@ -20,11 +20,11 @@ const Career = () => {
   return (
     <section className="mb-16">
       <h2 className={`text-3xl font-bold mb-8 ${
-        theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
+        theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
       } tracking-wide`} style={{
         textShadow: theme === 'dark'
           ? '0 0 10px rgba(0, 255, 140, 0.3)'
-          : '0 0 10px rgba(0, 179, 127, 0.3)'
+          : '0 0 15px rgba(16, 185, 129, 0.4)'
       }}>
         Career Path
       </h2>
@@ -35,25 +35,25 @@ const Career = () => {
             className={`relative border ${
               theme === 'dark' 
                 ? 'bg-matrix-darkest/40 border-matrix-accent-dark/20' 
-                : 'bg-matrix-lightest/40 border-matrix-accent-light/20'
+                : 'bg-emerald-50/80 border-emerald-200'
             } rounded-lg p-6 backdrop-blur-sm`}
             style={{
               boxShadow: theme === 'dark'
                 ? '0 4px 20px rgba(0, 255, 140, 0.1)'
-                : '0 4px 20px rgba(0, 179, 127, 0.1)'
+                : '0 4px 20px rgba(16, 185, 129, 0.15)'
             }}
           >
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className={`text-xl font-semibold ${
-                  theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
+                  theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
                 }`}>{exp.title}</h3>
-                <p className={theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-matrix-text-light/80'}>
+                <p className={theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-emerald-700/90'}>
                   {exp.company}
                 </p>
               </div>
               <span className={`text-sm ${
-                theme === 'dark' ? 'text-matrix-text-dark/70' : 'text-matrix-text-light/70'
+                theme === 'dark' ? 'text-matrix-text-dark/70' : 'text-emerald-600/80'
               }`}>
                 {exp.period}
               </span>
@@ -66,7 +66,7 @@ const Career = () => {
                   className={`px-3 py-1 text-sm rounded ${
                     theme === 'dark'
                       ? 'bg-matrix-darkest/60 text-matrix-accent-dark border border-matrix-accent-dark/30'
-                      : 'bg-matrix-lightest/60 text-matrix-accent-light border border-matrix-accent-light/30'
+                      : 'bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm'
                   }`}
                 >
                   {tag}
@@ -75,7 +75,7 @@ const Career = () => {
             </div>
             
             <p className={`whitespace-pre-line ${
-              theme === 'dark' ? 'text-matrix-text-dark/90' : 'text-matrix-text-light/90'
+              theme === 'dark' ? 'text-matrix-text-dark/90' : 'text-emerald-800'
             }`}>
               {exp.description}
             </p>
