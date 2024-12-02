@@ -6,7 +6,7 @@ const SkillCard = ({ name, icon, category }) => {
 
   return (
     <div className={`
-      group relative p-5 rounded-xl
+      group relative p-3 sm:p-5 rounded-xl
       transition-all duration-300 ease-in-out
       backdrop-blur-sm
       border-2
@@ -20,9 +20,9 @@ const SkillCard = ({ name, icon, category }) => {
         : 'shadow-[0_4px_20px_-12px_rgba(0,179,127,0.25)]'
       }
     `}>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <div className={`
-          flex-shrink-0 text-3xl p-3 rounded-lg
+          flex-shrink-0 text-2xl sm:text-3xl p-2 sm:p-3 rounded-lg
           transition-colors duration-300
           ${theme === 'dark'
             ? 'bg-matrix-darkest/30 text-matrix-light'
@@ -33,7 +33,7 @@ const SkillCard = ({ name, icon, category }) => {
         </div>
         <div className="flex-grow">
           <h3 className={`
-            text-lg font-bold mb-2
+            text-base sm:text-lg font-bold mb-1.5 sm:mb-2
             transition-colors duration-300
             ${theme === 'dark'
               ? 'text-matrix-text-dark group-hover:text-matrix-accent-dark'
@@ -43,7 +43,7 @@ const SkillCard = ({ name, icon, category }) => {
             {name}
           </h3>
           <div className={`
-            inline-block px-3 py-1 rounded-full text-sm font-medium
+            inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium
             transition-colors duration-300
             ${theme === 'dark'
               ? 'bg-matrix-dark/30 text-matrix-light'
