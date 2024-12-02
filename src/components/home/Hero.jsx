@@ -124,9 +124,9 @@ const Hero = () => {
       {/* Terminal Text */}
       <div 
         ref={terminalRef}
-        className={`absolute top-1/4 left-8 font-mono ${
+        className={`absolute top-16 md:top-1/4 left-4 md:left-8 font-mono ${
           theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
-        } text-sm whitespace-pre`}
+        } text-[10px] md:text-sm whitespace-pre opacity-60`}
         style={{ 
           textShadow: theme === 'dark'
             ? '0 0 10px rgba(0, 255, 140, 0.3)'
@@ -134,33 +134,34 @@ const Hero = () => {
         }}
       ></div>
 
-      <div className="relative max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8 text-center z-10">
+      <div className="relative w-full max-w-5xl mx-auto px-4 py-8 md:py-16 sm:px-6 lg:px-8 text-center z-10">
         <h1 
           ref={titleRef}
-          className={`text-5xl md:text-7xl font-bold mb-8 ${
+          className={`text-3xl sm:text-4xl md:text-7xl font-bold mb-6 md:mb-8 ${
             theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
           }`}
           style={{ 
             fontFamily: "'Share Tech Mono', monospace",
             letterSpacing: '0.05em',
-            opacity: 0 // Set initial opacity
+            opacity: 0,
+            lineHeight: '1.2'
           }}
         >
-          Ellis Velandia Caicedo
+          Ellis<br className="block sm:hidden" /> Velandia<br className="block sm:hidden" /> Caicedo
         </h1>
 
         <div 
           ref={descriptionRef}
-          className={`text-xl md:text-2xl mb-12 ${
+          className={`text-base sm:text-lg md:text-2xl mb-8 md:mb-12 ${
             theme === 'dark' ? 'text-matrix-text-dark' : 'text-matrix-text-light'
-          } space-y-6 font-light`}
-          style={{ opacity: 0 }} // Set initial opacity
+          } space-y-4 md:space-y-6 font-light px-2`}
+          style={{ opacity: 0 }}
         >
           <p className="leading-relaxed">
             I am a <span ref={highlightRef} className="font-medium transition-all duration-300">Software Developer from Colombia</span>, 
             currently working as an intern at HDI/Liberty Seguros on real-world software projects.
           </p>
-          <p className="leading-relaxed max-w-3xl mx-auto">
+          <p className="leading-relaxed max-w-3xl mx-auto text-sm sm:text-base md:text-lg">
             Passionate about creating intuitive web experiences and solving complex problems using 
             <span className={theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'}> React</span>,
             <span className={theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'}> Node.js</span>,
@@ -171,7 +172,7 @@ const Hero = () => {
 
         <div 
           ref={socialsRef}
-          className="flex justify-center items-center space-x-8"
+          className="flex justify-center items-center space-x-6 md:space-x-8"
         >
           {socialLinks.map((link, index) => (
             link.external ? (
