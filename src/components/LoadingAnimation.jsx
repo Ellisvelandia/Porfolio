@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import MatrixRain from './MatrixRain';
 
 const LoadingAnimation = ({ onComplete }) => {
   const containerRef = useRef(null);
@@ -63,6 +64,7 @@ const LoadingAnimation = ({ onComplete }) => {
       ref={containerRef}
       className="fixed inset-0 flex items-center justify-center bg-black z-50"
     >
+        <MatrixRain />
       <div className="text-center">
         <div className="relative">
           <svg className="w-64 h-32" viewBox="0 0 500 140">

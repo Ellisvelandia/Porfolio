@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
-import MatrixRain from './components/MatrixRain';
 import LoadingAnimation from './components/LoadingAnimation';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -16,7 +15,6 @@ const AppContent = ({ loading, setLoading }) => {
   return (
     <Router>
       <div className="relative min-h-screen w-full overflow-hidden">
-        <MatrixRain />
         <div className={`relative z-10 min-h-screen ${
           theme === 'dark' 
             ? 'bg-transparent text-matrix-text-dark' 
