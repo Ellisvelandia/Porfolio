@@ -97,12 +97,15 @@ const ProjectCard = ({ project, isActive, theme }) => {
   return (
     <div
       ref={cardRef}
+      role="article"
+      tabIndex={0}
+      aria-label={`Project: ${project.title}`}
       className={`
         relative w-full aspect-[16/12] sm:aspect-video rounded-xl overflow-hidden group 
-        transition-all duration-300
+        transition-all duration-300 focus:outline-none focus:ring-2 
         ${theme === 'dark'
-          ? 'bg-black/40 border-matrix-accent-dark/20'
-          : 'bg-white/90 border-emerald-200/60'
+          ? 'bg-black/40 border-matrix-accent-dark/20 focus:ring-matrix-accent-dark'
+          : 'bg-white/90 border-emerald-200/60 focus:ring-emerald-500'
         } border-2
       `}
       style={{
@@ -113,6 +116,12 @@ const ProjectCard = ({ project, isActive, theme }) => {
           : theme === 'dark'
             ? '0 4px 16px -4px rgba(0, 255, 140, 0.15)'
             : '0 4px 16px -4px rgba(16, 185, 129, 0.15)'
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.open(project.link, '_blank', 'noopener noreferrer');
+        }
       }}
     >
       {/* Ambient Glow Effect */}
@@ -134,6 +143,8 @@ const ProjectCard = ({ project, isActive, theme }) => {
       {/* Media Layer - Conditional Video/Image */}
       {useVideoFallback ? (
         <div
+          role="img"
+          aria-label={`${project.title} preview image`}
           className={`absolute inset-0 w-full h-full ${isActive ? 'opacity-40' : 'opacity-20'} transition-opacity duration-300`}
           style={{
             backgroundImage: `url(${project.fallbackImage})`,
@@ -151,6 +162,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
           <video
             ref={videoRef}
             src={project.videoSrc}
+            aria-label={`${project.title} preview video`}
             className={`absolute w-full h-full object-cover ${isActive ? 'opacity-40' : 'opacity-20'} transition-opacity duration-300`}
             style={{
               filter: theme === 'dark'
@@ -188,72 +200,56 @@ const ProjectCard = ({ project, isActive, theme }) => {
           isActive ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-2'
         } transition-all duration-300`}
       >
-        {/* Title */}
-        <h3 className={`text-xl sm:text-2xl font-bold mb-2 tracking-tight ${
-          theme === 'dark'
-            ? 'text-matrix-accent-dark drop-shadow-[0_0_8px_rgba(0,255,140,0.3)]'
-            : 'text-emerald-50 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'
-        }`}>
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className={`text-sm sm:text-base mb-3 sm:mb-4 font-light line-clamp-2 ${
-          isActive ? 'line-clamp-none' : ''
-        } ${
-          theme === 'dark'
-            ? 'text-matrix-text-dark/90'
-            : 'text-emerald-50/95'
-        }`}>
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-          {project.tags.map((tag, index) => (
-            <span
-              key={index}
-              className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs sm:text-sm font-medium
-                ${theme === 'dark'
-                  ? 'bg-matrix-darkest/40 text-matrix-accent-dark border-matrix-accent-dark/20'
-                  : 'bg-emerald-900/40 text-emerald-100 border-emerald-400/30'
-                } border shadow-lg ${
+        <div className="space-y-2 sm:space-y-3">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2" aria-label="Project technologies">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className={`text-xs px-2 py-1 rounded-full ${
                   theme === 'dark'
-                    ? 'shadow-matrix-accent-dark/5'
-                    : 'shadow-emerald-500/5'
+                    ? 'bg-matrix-accent-dark/20 text-matrix-accent-dark'
+                    : 'bg-emerald-100 text-emerald-800'
                 }`}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {/* Action Button */}
-        <div className="flex gap-4">
-          {project.links?.demo && (
-            <a
-              href={project.links.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-md overflow-hidden
-                backdrop-blur-sm border font-medium text-sm
-                transition-all duration-300 transform hover:scale-105 active:scale-95
-                ${theme === 'dark'
-                  ? 'bg-matrix-accent-dark/20 text-matrix-accent-dark border-matrix-accent-dark/30 hover:bg-matrix-accent-dark/30'
-                  : 'bg-emerald-500/20 text-emerald-100 border-emerald-400/30 hover:bg-emerald-500/30'
-                }`}
-              style={{
-                boxShadow: theme === 'dark'
-                  ? "0 0 20px rgba(0, 255, 140, 0.15)"
-                  : "0 0 20px rgba(16, 185, 129, 0.15)",
-                textShadow: theme === 'dark'
-                  ? "0 0 8px rgba(0, 255, 140, 0.3)"
-                  : "0 0 8px rgba(16, 185, 129, 0.3)",
-              }}
-            >
-              <span className="relative z-10">View Project</span>
-            </a>
-          )}
+          {/* Title */}
+          <h3 className={`text-xl sm:text-2xl font-bold tracking-tight ${
+            theme === 'dark'
+              ? 'text-matrix-accent-dark drop-shadow-[0_0_8px_rgba(0,255,140,0.3)]'
+              : 'text-emerald-50 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'
+          }`}>
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p className={`text-sm sm:text-base font-light line-clamp-2 ${
+            theme === 'dark' ? 'text-gray-300' : 'text-emerald-50'
+          }`}>
+            {project.description}
+          </p>
+
+          {/* Link */}
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center text-sm ${
+              theme === 'dark'
+                ? 'text-matrix-accent-dark hover:text-matrix-accent-dark/80'
+                : 'text-emerald-200 hover:text-emerald-100'
+            } transition-colors`}
+            aria-label={`View ${project.title} project`}
+          >
+            View Project
+            <svg className="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
