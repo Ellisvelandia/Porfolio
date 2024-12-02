@@ -34,7 +34,7 @@ const Skillset = () => {
   return (
     <div className="min-h-screen py-20 px-4 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12">Skillset</h1>
+        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Skillset</h1>
         
         <div className="flex justify-center mb-8 space-x-4 flex-wrap gap-y-2">
           {categories.map(category => (

@@ -5,35 +5,30 @@ const Mission = () => {
   const missions = [
     {
       number: 1,
-      title: "Web Development Excellence",
-      description: "Dedicated to creating exceptional web experiences through modern technologies and best practices. I strive to build intuitive, performant, and accessible applications that solve real-world problems."
+      title: "Full-Stack Development Expertise",
+      description: "Specialized in modern web development with React.js and related technologies. Committed to building scalable, responsive applications that provide exceptional user experiences while maintaining robust backend architectures."
     },
     {
       number: 2,
-      title: "Continuous Learning",
-      description: "Committed to continuous growth in software development, actively learning new technologies and methodologies to stay at the forefront of web development."
+      title: "Innovation & Technical Growth",
+      description: "Actively expanding knowledge in emerging technologies like AI integration, cloud services, and modern development frameworks. Passionate about implementing cutting-edge solutions in real-world applications."
     },
     {
       number: 3,
-      title: "Code Quality",
-      description: "Focused on writing clean, maintainable, and well-documented code. I believe in the importance of following best practices and industry standards to create robust applications."
+      title: "Quality-Driven Development",
+      description: "Advocate for clean code architecture, comprehensive testing, and maintainable solutions. Experienced in implementing CI/CD pipelines and ensuring code quality through automated testing and thorough code reviews."
     },
     {
       number: 4,
-      title: "Problem Solving",
-      description: "Passionate about solving complex technical challenges and finding innovative solutions to improve user experiences and application performance."
-    },
-    {
-      number: 5,
-      title: "Collaboration",
-      description: "Enthusiastic about working in teams, sharing knowledge, and contributing to the developer community. I value open communication and collaborative problem-solving."
+      title: "Project Leadership",
+      description: "Proven track record in leading development teams and managing complex projects. Skilled in agile methodologies and ensuring successful project delivery through effective communication and technical leadership."
     }
   ];
 
   return (
     <div className="min-h-screen py-20 px-4 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12">Mission</h1>
+        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Mission</h1>
         <div className="space-y-6">
           {missions.map((mission) => (
             <MissionCard

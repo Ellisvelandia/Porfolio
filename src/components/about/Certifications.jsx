@@ -1,40 +1,63 @@
-import React from 'react';
+import React from "react";
 
 const Certifications = () => {
   const certifications = [
     {
-      name: 'HeartSaver First Aid CPR AED',
-      issuer: 'American Heart Association',
-      date: 'September 2022',
-      tags: ['CPR', 'First Aid']
+      id: 1,
+      name: "Google Cybersecurity",
+      img: "/certificates/google.png",
+      link: "https://www.coursera.org/account/accomplishments/specialization/G2KBQZAVU5V8",
+      issuer: "Google",
+      date: "2023",
+      tags: ["Cybersecurity", "Google"],
     },
-    {
-      name: 'Amateur Radio Technician\'s License',
-      issuer: 'KE6AKG',
-      date: 'August 2021',
-      tags: ['Amateur Radio', 'Electronics']
-    },
-    {
-      name: 'Recreational UAS Safety Test',
-      issuer: 'UAV Coach',
-      date: 'December 2021',
-      tags: ['Drones']
-    }
   ];
 
   return (
     <section>
-      <h2 className="text-2xl font-bold mb-6">Certifications</h2>
-      <div className="space-y-6">
-        {certifications.map((cert, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        Certifications
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {certifications.map((cert) => (
+          <div
+            key={cert.id}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+          >
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h3 className="text-xl font-semibold text-blue-600">{cert.name}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{cert.issuer}</p>
+                <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">
+                  {cert.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {cert.issuer}
+                </p>
               </div>
-              <span className="text-gray-500 dark:text-gray-400">{cert.date}</span>
+              <span className="text-gray-500 dark:text-gray-400">
+                {cert.date}
+              </span>
             </div>
+            {cert.img && (
+              <div className="mb-4">
+                <img
+                  src={cert.img}
+                  alt={cert.name}
+                  className="w-full h-40 object-contain rounded-lg bg-gray-100 dark:bg-gray-700 p-2"
+                />
+              </div>
+            )}
+            {cert.link && (
+              <div className="mb-4">
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors dark:bg-blue-500 dark:hover:bg-blue-600"
+                >
+                  View Certificate
+                </a>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {cert.tags.map((tag, tagIndex) => (
                 <span
