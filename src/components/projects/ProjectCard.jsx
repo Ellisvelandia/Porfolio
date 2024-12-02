@@ -100,9 +100,9 @@ const ProjectCard = ({ project, isActive, theme }) => {
       role="article"
       tabIndex={0}
       aria-label={`Project: ${project.title}`}
-      className={`relative w-full aspect-[16/12] sm:aspect-video rounded-xl overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 ${theme === 'dark' ? 'bg-black/40 border-matrix-accent-dark/20 focus:ring-matrix-accent-dark' : 'bg-white/90 border-emerald-200/60 focus:ring-emerald-500'} border-2`}
+      className={`relative w-full aspect-[16/12] sm:aspect-video rounded-xl overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 ${theme === 'dark' ? 'bg-black/90 border-green-400/60 focus:ring-green-400' : 'bg-emerald-900/95 border-emerald-400 focus:ring-emerald-400'} border-2`}
       style={{
-        boxShadow: isActive ? (theme === 'dark' ? '0 8px 32px -4px rgba(0, 255, 140, 0.25)' : '0 8px 32px -4px rgba(16, 185, 129, 0.25)') : theme === 'dark' ? '0 4px 16px -4px rgba(0, 255, 140, 0.15)' : '0 4px 16px -4px rgba(16, 185, 129, 0.15)',
+        boxShadow: isActive ? (theme === 'dark' ? '0 8px 32px -4px rgba(74, 222, 128, 0.4)' : '0 8px 32px -4px rgba(16, 185, 129, 0.4)') : theme === 'dark' ? '0 4px 16px -4px rgba(74, 222, 128, 0.3)' : '0 4px 16px -4px rgba(16, 185, 129, 0.3)',
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -114,9 +114,9 @@ const ProjectCard = ({ project, isActive, theme }) => {
       {/* Ambient Glow Effect */}
       <div
         ref={glowRef}
-        className={`absolute inset-0 opacity-0 pointer-events-none ${theme === 'dark' ? 'bg-matrix-accent-dark/20' : 'bg-emerald-500/10'}`}
+        className={`absolute inset-0 opacity-0 pointer-events-none ${theme === 'dark' ? 'bg-blue-500/20' : 'bg-blue-100/10'}`}
         style={{
-          boxShadow: theme === 'dark' ? "inset 0 0 30px rgba(0, 255, 140, 0.2)" : "inset 0 0 30px rgba(16, 185, 129, 0.15)",
+          boxShadow: theme === 'dark' ? "inset 0 0 30px rgba(59, 130, 246, 0.2)" : "inset 0 0 30px rgba(59, 130, 246, 0.15)",
           backdropFilter: "blur(12px)",
         }}
       />
@@ -164,7 +164,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
       )}
 
       {/* Glass Overlay */}
-      <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-black/40 via-black/80 to-black/95' : 'bg-gradient-to-b from-white/10 via-emerald-900/60 to-emerald-900/90'}`} />
+      <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-slate-900/40 via-slate-900/80 to-slate-900/95' : 'bg-gradient-to-b from-white/10 via-emerald-900/60 to-emerald-900/90'}`} />
 
       {/* Content */}
       <div
@@ -177,7 +177,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
             {project.tags.map((tag, index) => (
               <span
                 key={index}
-                className={`text-xs px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-matrix-accent-dark/20 text-matrix-accent-dark' : 'bg-emerald-100 text-emerald-800'}`}
+                className={`text-xs px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-green-900/60 text-green-300' : 'bg-emerald-700 text-emerald-100'}`}
               >
                 {tag}
               </span>
@@ -185,12 +185,12 @@ const ProjectCard = ({ project, isActive, theme }) => {
           </div>
 
           {/* Title */}
-          <h3 className={`text-xl sm:text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-matrix-accent-dark drop-shadow-[0_0_8px_rgba(0,255,140,0.3)]' : 'text-emerald-50 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'}`}>
+          <h3 className={`text-xl sm:text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.3)]' : 'text-emerald-300 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'}`}>
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className={`text-sm sm:text-base font-light line-clamp-2 ${theme === 'dark' ? 'text-gray-300' : 'text-emerald-50'}`}>
+          <p className={`text-sm sm:text-base font-light line-clamp-2 ${theme === 'dark' ? 'text-green-100' : 'text-emerald-100'}`}>
             {project.description}
           </p>
 
@@ -206,18 +206,18 @@ const ProjectCard = ({ project, isActive, theme }) => {
               group inline-flex items-center gap-2 px-4 py-2 rounded-lg 
               transition-all duration-300 transform hover:-translate-y-0.5
               ${theme === 'dark' 
-                ? 'bg-matrix-accent-dark/10 hover:bg-matrix-accent-dark/20 text-matrix-accent-dark'
-                : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-100'
+                ? 'bg-green-500/20 hover:bg-green-500/30 text-green-400'
+                : 'bg-emerald-600 hover:bg-emerald-500 text-emerald-100'
               }
               backdrop-blur-sm border
               ${theme === 'dark'
-                ? 'border-matrix-accent-dark/30 hover:border-matrix-accent-dark/50'
-                : 'border-emerald-400/30 hover:border-emerald-400/50'
+                ? 'border-green-400/50 hover:border-green-400/70'
+                : 'border-emerald-400/70 hover:border-emerald-300'
               }
-              relative overflow-hidden hover:shadow-lg cursor-pointer
+              relative overflow-hidden hover:shadow-lg cursor-pointer font-medium
               ${theme === 'dark'
-                ? 'hover:shadow-matrix-accent-dark/20'
-                : 'hover:shadow-emerald-500/20'
+                ? 'hover:shadow-green-400/30'
+                : 'hover:shadow-emerald-400/40'
               }
             `}
             aria-label={`Visit ${project.title} project in a new tab`}
@@ -233,8 +233,8 @@ const ProjectCard = ({ project, isActive, theme }) => {
                   transition-transform duration-300 transform
                   group-hover:rotate-45
                   ${theme === 'dark'
-                    ? 'text-matrix-accent-dark'
-                    : 'text-emerald-100'
+                    ? 'text-green-400'
+                    : 'text-green-500 hover:text-green-400'
                   }
                 `}>
                   <svg 
@@ -246,9 +246,10 @@ const ProjectCard = ({ project, isActive, theme }) => {
                     <path 
                       d="M7 17L17 7M17 7H8M17 7V16" 
                       stroke="currentColor" 
-                      strokeWidth="1.5" 
+                      strokeWidth="2"
                       strokeLinecap="round" 
                       strokeLinejoin="round"
+                      className={`${theme === 'dark' ? 'drop-shadow-[0_0_3px_rgba(74,222,128,0.5)]' : 'drop-shadow-[0_0_3px_rgba(34,197,94,0.5)]'}`}
                     />
                   </svg>
                 </span>
@@ -258,8 +259,8 @@ const ProjectCard = ({ project, isActive, theme }) => {
               absolute inset-0 -z-10 opacity-0 group-hover:opacity-100
               transition-all duration-300
               ${theme === 'dark' 
-                ? 'bg-gradient-to-r from-matrix-accent-dark/0 via-matrix-accent-dark/5 to-matrix-accent-dark/10'
-                : 'bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/10'
+                ? 'bg-gradient-to-r from-green-500/0 via-green-500/20 to-green-500/30'
+                : 'bg-gradient-to-r from-emerald-600/0 via-emerald-600/20 to-emerald-600/30'
               }
             `} />
           </button>
