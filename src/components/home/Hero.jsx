@@ -12,8 +12,8 @@ const Hero = () => {
 
   return (
     <section className="flex items-center justify-center min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 text-center py-16">
-        <h1 className="text-5xl md:text-7xl font-bold text-blue-600 mb-8">
+      <div className="max-w-4xl mx-auto px-4 text-center py-16 ">
+        <h1 className="text-5xl md:text-7xl font-bold text-blue-600 mb-8 ">
           Ellis Velandia Caicedo
         </h1>
         <div className="text-xl md:text-2xl mb-8 text-gray-700 dark:text-gray-300">
