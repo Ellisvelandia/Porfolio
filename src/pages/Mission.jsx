@@ -1,5 +1,6 @@
 import React from 'react';
 import MissionCard from '../components/mission/MissionCard';
+import PageLayout from '../components/layout/PageLayout';
 
 const Mission = () => {
   const missions = [
@@ -26,21 +27,19 @@ const Mission = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Mission</h1>
-        <div className="space-y-6">
-          {missions.map((mission) => (
-            <MissionCard
-              key={mission.number}
-              number={mission.number}
-              title={mission.title}
-              description={mission.description}
-            />
-          ))}
-        </div>
+    <PageLayout>
+      <h1 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Mission</h1>
+      <div className="space-y-6">
+        {missions.map((mission) => (
+          <MissionCard
+            key={mission.number}
+            number={mission.number}
+            title={mission.title}
+            description={mission.description}
+          />
+        ))}
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

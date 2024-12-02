@@ -1,11 +1,12 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
+import PageLayout from '../components/layout/PageLayout';
 
 const Home = () => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900">
+    <PageLayout>
       <Hero />
-    </div>
+    </PageLayout>
   );
 };
 
