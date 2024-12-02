@@ -26,7 +26,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formRef = useRef(null);
-  const titleRef = useRef(null);
   const contentRef = useRef(null);
 
   const socialLinks = [
@@ -34,19 +33,6 @@ const Contact = () => {
     { icon: faLinkedin, url: 'https://linkedin.com/in/ellisvelandia', label: 'LinkedIn' },
   ];
 
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    tl.fromTo(titleRef.current,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 }
-    )
-    .fromTo(contentRef.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      '-=0.5'
-    );
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -101,14 +87,6 @@ const Contact = () => {
         </div>
 
         <div className="relative max-w-6xl mx-auto">
-          <div ref={titleRef} className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
-              Let's Connect
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Have a question or want to work together? I'd love to hear from you.
-            </p>
-          </div>
 
           <div 
             ref={contentRef} 
