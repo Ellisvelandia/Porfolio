@@ -233,7 +233,7 @@ const Projects = () => {
         {/* Projects Carousel */}
         <div 
           ref={carouselRef}
-          className={`relative flex flex-col ${isMobile ? 'h-auto mt-8' : 'h-screen items-center justify-center'}`}
+          className={`relative flex flex-col ${isMobile ? 'h-[400px]' : 'h-screen items-center justify-center'}`}
           style={{ 
             perspective: "1500px",
             transformStyle: "preserve-3d"
@@ -262,7 +262,10 @@ const Projects = () => {
                 }}
               >
                 <ProjectCard 
-                  project={project} 
+                  project={{
+                    ...project,
+                    link: project.links.demo
+                  }} 
                   isActive={index === currentIndex} 
                 />
               </div>
@@ -272,7 +275,7 @@ const Projects = () => {
           {/* Mobile Navigation Controls */}
           {isMobile && (
             <div className="flex flex-col gap-1 items-center mt-2">
-              <div className="text-[10px] flex items-center gap-1.5 text-matrix-accent-dark/60 bg-matrix-darkest/40 px-2 py-0.5 rounded-full backdrop-blur-sm">
+              <div className="text-[10px] flex items-center gap-1.5 bg-slate-800/80 dark:bg-matrix-darkest/40 text-white dark:text-matrix-accent-dark/60 px-2 py-0.5 rounded-full backdrop-blur-sm">
                 <span>Swipe or use buttons</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -281,18 +284,18 @@ const Projects = () => {
               <div className="flex justify-center items-center gap-2">
                 <button
                   onClick={handlePrevious}
-                  className={`p-1.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+                  className={`p-1.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
                 </button>
-                <div className={`px-2 py-0.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark backdrop-blur-sm text-[10px]`}>
+                <div className={`px-2 py-0.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark backdrop-blur-sm text-[10px]`}>
                   {currentIndex + 1} / {projects.length}
                 </div>
                 <button
                   onClick={handleNext}
-                  className={`p-1.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+                  className={`p-1.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
