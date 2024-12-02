@@ -159,13 +159,13 @@ const Contact = () => {
             >
               <div className="space-y-6">
                 <div>
-                  <label htmlFor="from_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="from_name" className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2">
                     Name
                   </label>
                   <div className="relative">
                     <FontAwesomeIcon 
                       icon={faUser} 
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
                     />
                     <input
                       id="from_name"
@@ -174,20 +174,20 @@ const Contact = () => {
                       required
                       value={formData.from_name}
                       onChange={handleChange}
-                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white transition-all duration-200"
+                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       placeholder="Your name"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="reply_to" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="reply_to" className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2">
                     Email
                   </label>
                   <div className="relative">
                     <FontAwesomeIcon 
                       icon={faEnvelope} 
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
                     />
                     <input
                       id="reply_to"
@@ -196,14 +196,14 @@ const Contact = () => {
                       required
                       value={formData.reply_to}
                       onChange={handleChange}
-                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white transition-all duration-200"
+                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2">
                     Message
                   </label>
                   <textarea
@@ -213,7 +213,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white transition-all duration-200 resize-none"
+                    className="w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
                     placeholder="Your message..."
                   />
                 </div>

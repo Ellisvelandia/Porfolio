@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudMoon, faCloudSun, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCloudMoon, faCloudSun, faTimes, faBars, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
 import { gsap } from 'gsap';
 
@@ -101,7 +101,10 @@ const Navbar = () => {
               to="/" 
               className="text-2xl font-bold transition-colors duration-200"
             >
-              <span className="text-blue-600">E</span>
+              <FontAwesomeIcon 
+                icon={faHouse} 
+                className="text-2xl text-blue-600 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300" 
+              />
             </Link>
           </div>
 
