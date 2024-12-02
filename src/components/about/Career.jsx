@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 const Career = () => {
+  const { theme } = useTheme();
+  
   const experiences = [
     {
       title: 'Apprentice',
@@ -15,29 +18,67 @@ const Career = () => {
   ];
 
   return (
-    <section>
-      <h2 className="text-2xl font-bold mb-6">Career</h2>
+    <section className="mb-16">
+      <h2 className={`text-3xl font-bold mb-8 ${
+        theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
+      } tracking-wide`} style={{
+        textShadow: theme === 'dark'
+          ? '0 0 10px rgba(0, 255, 140, 0.3)'
+          : '0 0 10px rgba(0, 179, 127, 0.3)'
+      }}>
+        Career Path
+      </h2>
       <div className="space-y-8">
         {experiences.map((exp, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div 
+            key={index} 
+            className={`relative border ${
+              theme === 'dark' 
+                ? 'bg-matrix-darkest/40 border-matrix-accent-dark/20' 
+                : 'bg-matrix-lightest/40 border-matrix-accent-light/20'
+            } rounded-lg p-6 backdrop-blur-sm`}
+            style={{
+              boxShadow: theme === 'dark'
+                ? '0 4px 20px rgba(0, 255, 140, 0.1)'
+                : '0 4px 20px rgba(0, 179, 127, 0.1)'
+            }}
+          >
             <div className="flex justify-between items-start mb-4">
               <div>
-                <h3 className="text-xl font-semibold text-blue-600">{exp.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{exp.company}</p>
+                <h3 className={`text-xl font-semibold ${
+                  theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
+                }`}>{exp.title}</h3>
+                <p className={theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-matrix-text-light/80'}>
+                  {exp.company}
+                </p>
               </div>
-              <span className="text-gray-500 dark:text-gray-400">{exp.period}</span>
+              <span className={`text-sm ${
+                theme === 'dark' ? 'text-matrix-text-dark/70' : 'text-matrix-text-light/70'
+              }`}>
+                {exp.period}
+              </span>
             </div>
+            
             <div className="flex flex-wrap gap-2 mb-4">
               {exp.tags.map((tag, tagIndex) => (
                 <span
                   key={tagIndex}
-                  className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                  className={`px-3 py-1 text-sm rounded ${
+                    theme === 'dark'
+                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark border border-matrix-accent-dark/30'
+                      : 'bg-matrix-lightest/60 text-matrix-accent-light border border-matrix-accent-light/30'
+                  }`}
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{exp.description}</p>
+            
+            <p className={`whitespace-pre-line ${
+              theme === 'dark' ? 'text-matrix-text-dark/90' : 'text-matrix-text-light/90'
+            }`}>
+              {exp.description}
+            </p>
           </div>
         ))}
       </div>
