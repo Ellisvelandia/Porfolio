@@ -121,36 +121,41 @@ const ProjectCard = ({ project, isActive }) => {
           }}
         />
       ) : (
-        <video
-          ref={videoRef}
-          src={project.videoSrc}
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          loop
-          muted
-          playsInline
-          preload="auto"
-          autoPlay={isActive}
-          onError={handleVideoError}
-          onLoadStart={handleVideoLoadStart}
-          onLoadedData={handleVideoLoadedData}
-          style={{ 
-            filter: "brightness(0.85) contrast(1.1)",
-            transform: "scale(1.1)",
-            transition: "transform 0.7s ease-out",
-            willChange: "transform, opacity"
-          }}
-        />
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            src={project.videoSrc}
+            className="absolute w-[100%] h-[100%] object-cover opacity-30"
+            style={{ 
+              filter: "brightness(0.85) contrast(1.1)",
+              transform: "scale(1.1)",
+              transition: "transform 0.7s ease-out",
+              willChange: "transform, opacity",
+              objectFit: "cover",
+              objectPosition: "center"
+            }}
+            loop
+            muted
+            playsInline
+            preload="auto"
+            autoPlay={isActive}
+            onError={handleVideoError}
+            onLoadStart={handleVideoLoadStart}
+            onLoadedData={handleVideoLoadedData}
+          />
+        </div>
       )}
 
       {/* Glass Overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(to bottom, 
+          background: `linear-gradient(
+            to bottom, 
             transparent 0%, 
             ${project.bgColor} 40%, 
             ${project.bgColor} 100%
-          )`
+          )`,
         }}
       />
 
