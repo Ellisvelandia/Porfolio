@@ -4,7 +4,7 @@ import PageLayout from '../components/layout/PageLayout';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown, faArrowDown, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -200,22 +200,22 @@ const Projects = () => {
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-10 px-4 md:px-8">
             <button
               onClick={() => navigateCarousel('prev')}
-              className={`nav-button ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
+              className={`nav-button ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'} group`}
               disabled={currentIndex === 0}
             >
               <FontAwesomeIcon 
-                icon={faChevronLeft} 
-                className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
+                icon={faAngleDoubleLeft} 
+                className="text-2xl md:text-3xl text-matrix-accent-dark/70 group-hover:text-matrix-accent-dark transition-all duration-300 transform group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,255,140,0.5)]"
               />
             </button>
             <button
               onClick={() => navigateCarousel('next')}
-              className={`nav-button ${currentIndex === projects.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
+              className={`nav-button ${currentIndex === projects.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'} group`}
               disabled={currentIndex === projects.length - 1}
             >
               <FontAwesomeIcon 
-                icon={faChevronRight} 
-                className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
+                icon={faAngleDoubleRight}
+                className="text-2xl md:text-3xl text-matrix-accent-dark/70 group-hover:text-matrix-accent-dark transition-all duration-300 transform group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,255,140,0.5)]"
               />
             </button>
           </div>
@@ -266,31 +266,34 @@ const Projects = () => {
           {/* Mobile Navigation Controls */}
           {isMobile && (
             <div className="flex flex-col gap-1 items-center mt-2">
-              <div className="text-[10px] flex items-center gap-1.5 bg-slate-800/80 dark:bg-matrix-darkest/40 text-white dark:text-matrix-accent-dark/60 px-2 py-0.5 rounded-full backdrop-blur-sm">
+              <div className="text-[10px] flex items-center gap-2 bg-slaterounded-full/80 dark:bg-matrix-darkest/40 text-white dark:text-matrix-accent-dark/60 px-2 py-0.5 rounded-full backdrop-blur-sm">
                 <span>Swipe or use buttons</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+                <FontAwesomeIcon 
+                  icon={faArrowDown} 
+                  className="h-3 w-3 animate-bounce"
+                />
               </div>
               <div className="flex justify-center items-center gap-2">
                 <button
                   onClick={handlePrevious}
-                  className={`p-1.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
+                  className={`p-2 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                  </svg>
+                  <FontAwesomeIcon 
+                    icon={faChevronUp} 
+                    className="h-3 w-3"
+                  />
                 </button>
                 <div className={`px-2 py-0.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark backdrop-blur-sm text-[10px]`}>
                   {currentIndex + 1} / {projects.length}
                 </div>
                 <button
                   onClick={handleNext}
-                  className={`p-1.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
+                  className={`p-2 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <FontAwesomeIcon 
+                    icon={faChevronDown} 
+                    className="h-3 w-3"
+                  />
                 </button>
               </div>
             </div>

@@ -194,7 +194,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
             {project.description}
           </p>
 
-          {/* Link */}
+          {/* Link */}  
           <button
             onClick={(e) => {
               e.preventDefault();
