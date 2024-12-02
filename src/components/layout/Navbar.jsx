@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
+import { faCloudMoon, faCloudSun } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = () => {
@@ -52,7 +52,7 @@ const Navbar = () => {
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               <FontAwesomeIcon 
-                icon={isDark ? faSun : faMoon} 
+                icon={isDark ? faCloudSun : faCloudMoon} 
                 className="text-gray-700 dark:text-gray-300"
               />
             </button>
