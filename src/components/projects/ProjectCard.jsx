@@ -165,21 +165,21 @@ const ProjectCard = ({ project, isActive }) => {
         className="absolute inset-0 p-10 flex flex-col justify-end transform-gpu"
       >
         {/* Title */}
-        <h3 className="text-4xl font-bold text-white/95 mb-4 tracking-tight">
+        <h3 className="text-2xl md:text-4xl font-bold text-white/95 mb-2 md:mb-4 tracking-tight">
           {project.title}
         </h3>
         
         {/* Description */}
-        <p className="text-xl text-white/85 mb-6 line-clamp-2 font-light">
+        <p className="text-base md:text-xl text-white/85 mb-4 md:mb-6 line-clamp-2 font-light">
           {project.description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-8">
           {project.tags.map((tag, index) => (
             <span
               key={index}
-              className="px-4 py-2 rounded-lg text-sm font-medium
+              className="px-2 py-1 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium
                        bg-white/[0.08] text-white/90
                        border border-white/[0.05] shadow-xl"
             >
@@ -195,8 +195,8 @@ const ProjectCard = ({ project, isActive }) => {
               href={project.links.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-8 py-3 rounded-xl overflow-hidden
-                       bg-white/[0.98] text-slate-900 font-medium text-lg
+              className="group relative px-2 md:px-4 py-1 md:py-2 rounded-xl overflow-hidden
+                       bg-white/[0.98] text-slate-900 font-medium text-sm md:text-base
                        hover:bg-white transition-colors duration-300
                        transform hover:scale-105 active:scale-95"
               style={{ 
@@ -205,8 +205,7 @@ const ProjectCard = ({ project, isActive }) => {
               }}
             >
               <span className="relative z-10">View Demo</span>
-              <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 
-                            transition-transform duration-300 origin-left" />
+           
             </a>
           )}
         </div>

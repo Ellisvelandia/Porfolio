@@ -136,7 +136,7 @@ const Projects = () => {
         />
 
         {/* Navigation Controls */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-10 px-8">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-10 px-4 md:px-8">
           <button
             onClick={() => navigateCarousel('prev')}
             className={`nav-button ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
@@ -144,7 +144,7 @@ const Projects = () => {
           >
             <FontAwesomeIcon 
               icon={faChevronLeft} 
-              className="text-3xl text-white/70 hover:text-white transition-colors"
+              className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
             />
           </button>
           <button
@@ -154,7 +154,7 @@ const Projects = () => {
           >
             <FontAwesomeIcon 
               icon={faChevronRight} 
-              className="text-3xl text-white/70 hover:text-white transition-colors"
+              className="text-2xl md:text-3xl text-white/70 hover:text-white transition-colors"
             />
           </button>
         </div>
@@ -172,10 +172,10 @@ const Projects = () => {
             <div
               key={project.id}
               ref={el => projectsRef.current[index] = el}
-              className="absolute w-full max-w-5xl px-8 transition-transform duration-700"
+              className="absolute w-full max-w-5xl px-4 md:px-8 transition-transform duration-700"
               style={{
                 opacity: index === currentIndex ? 1 : 0.3,
-                transform: `translateX(${(index - currentIndex) * 120}%) 
+                transform: `translateX(${(index - currentIndex) * 100}%) 
                            scale(${index === currentIndex ? 1 : 0.85})
                            rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
                 transformOrigin: index < currentIndex ? "right center" : "left center",
