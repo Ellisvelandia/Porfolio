@@ -56,20 +56,28 @@ const Projects = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Initial setup animation
+      // Initial setup animation with adjusted mobile positioning
       gsap.fromTo(containerRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        { 
+          opacity: 0, 
+          y: isMobile ? 20 : 50 // Reduced y offset for mobile
+        },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: isMobile ? 0.8 : 1, 
+          ease: "power3.out" 
+        }
       );
 
-      // Create perspective effect for non-active cards
+      // Create perspective effect for non-active cards with adjusted mobile spacing
       projectsRef.current.forEach((card, i) => {
         if (i !== currentIndex) {
           gsap.set(card, {
             opacity: 0.3,
-            scale: 0.85,
+            scale: isMobile ? 0.9 : 0.85,
             ...(isMobile ? {
-              y: i < currentIndex ? -100 : 100,
+              y: i < currentIndex ? -50 : 50, // Reduced vertical offset for mobile
               transformOrigin: i < currentIndex ? "bottom center" : "top center",
             } : {
               x: i < currentIndex ? -100 : 100,
@@ -91,7 +99,7 @@ const Projects = () => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [currentIndex, isMobile]); // Added isMobile to dependencies
 
   const navigateCarousel = (direction) => {
     const newIndex = direction === 'next' 
@@ -184,7 +192,7 @@ const Projects = () => {
     <PageLayout>
       <div 
         ref={containerRef} 
-        className="relative min-h-screen overflow-hidden perspective-1000"
+        className={`relative ${isMobile ? 'min-h-[100vh]' : 'min-h-screen'} overflow-hidden perspective-1000`}
       >
         {/* Ambient Background */}
         <div 
@@ -222,35 +230,10 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Mobile Navigation Controls */}
-        {isMobile && (
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4 z-10">
-            <button
-              onClick={handlePrevious}
-              className={`p-3 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-              </svg>
-            </button>
-            <div className={`px-4 py-2 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark backdrop-blur-sm text-sm`}>
-              {currentIndex + 1} / {projects.length}
-            </div>
-            <button
-              onClick={handleNext}
-              className={`p-3 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-        )}
-
         {/* Projects Carousel */}
         <div 
           ref={carouselRef}
-          className="relative flex items-center justify-center h-screen"
+          className={`relative flex flex-col ${isMobile ? 'h-auto mt-8' : 'h-screen items-center justify-center'}`}
           style={{ 
             perspective: "1500px",
             transformStyle: "preserve-3d"
@@ -259,43 +242,67 @@ const Projects = () => {
           onTouchMove={isMobile ? onTouchMove : undefined}
           onTouchEnd={isMobile ? onTouchEnd : undefined}
         >
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              ref={el => projectsRef.current[index] = el}
-              className="absolute w-full max-w-5xl px-4 md:px-8 transition-transform duration-700"
-              style={{
-                opacity: index === currentIndex ? 1 : 0.3,
-                transform: isMobile
-                  ? `translateY(${(index - currentIndex) * 100}%) 
-                     scale(${index === currentIndex ? 1 : 0.85})`
-                  : `translateX(${(index - currentIndex) * 100}%) 
-                     scale(${index === currentIndex ? 1 : 0.85})
-                     rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
-                transformOrigin: isMobile
-                  ? (index < currentIndex ? "bottom center" : "top center")
-                  : (index < currentIndex ? "right center" : "left center"),
-              }}
-            >
-              <ProjectCard 
-                project={project} 
-                isActive={index === currentIndex} 
-              />
+          <div className={`relative ${isMobile ? 'h-[400px]' : 'h-full w-full'} flex items-center justify-center`}>
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                ref={el => projectsRef.current[index] = el}
+                className={`absolute w-full max-w-5xl px-4 md:px-8 transition-transform duration-700`}
+                style={{
+                  opacity: index === currentIndex ? 1 : 0.3,
+                  transform: isMobile
+                    ? `translateY(${(index - currentIndex) * 40}%) 
+                       scale(${index === currentIndex ? 1 : 0.9})`
+                    : `translateX(${(index - currentIndex) * 100}%) 
+                       scale(${index === currentIndex ? 1 : 0.85})
+                       rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
+                  transformOrigin: isMobile
+                    ? (index < currentIndex ? "bottom center" : "top center")
+                    : (index < currentIndex ? "right center" : "left center"),
+                }}
+              >
+                <ProjectCard 
+                  project={project} 
+                  isActive={index === currentIndex} 
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Navigation Controls */}
+          {isMobile && (
+            <div className="flex flex-col gap-1 items-center mt-2">
+              <div className="text-[10px] flex items-center gap-1.5 text-matrix-accent-dark/60 bg-matrix-darkest/40 px-2 py-0.5 rounded-full backdrop-blur-sm">
+                <span>Swipe or use buttons</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
+              <div className="flex justify-center items-center gap-2">
+                <button
+                  onClick={handlePrevious}
+                  className={`p-1.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+                <div className={`px-2 py-0.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark backdrop-blur-sm text-[10px]`}>
+                  {currentIndex + 1} / {projects.length}
+                </div>
+                <button
+                  onClick={handleNext}
+                  className={`p-1.5 rounded-full bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 border backdrop-blur-sm`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          ))}
+          )}
         </div>
 
-        {/* Mobile Swipe Indicator - Only shown on mobile */}
-        {isMobile && (
-          <div className="absolute bottom-24 left-0 right-0 flex justify-center items-center text-matrix-accent-dark/60">
-            <div className="text-sm flex flex-col items-center gap-2">
-              <span>Swipe or use buttons to navigate</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
-        )}
       </div>
     </PageLayout>
   );
