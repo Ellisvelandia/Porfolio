@@ -82,32 +82,52 @@ const Contact = () => {
   return (
     <PageLayout>
       <Toaster position="top-right" />
-      <div className="relative min-h-screen py-20 px-4">
+      <div className="relative min-h-screen py-12 sm:py-20 px-4">
         <div className="relative max-w-6xl mx-auto">
           <div
             ref={contentRef}
-            className="grid md:grid-cols-5 gap-12 items-start"
+            className="grid grid-cols-1 md:grid-cols-5 gap-6 sm:gap-8 md:gap-12 items-start"
           >
+            {/* Mobile Title - Only visible on small screens */}
+            <div className="block md:hidden mb-6">
+              <h1 className="text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-[#00FF00] text-center">
+                Get in Touch
+              </h1>
+              <p className="mt-2 text-gray-600 dark:text-gray-300 text-center">
+                I'd love to hear from you!
+              </p>
+            </div>
+
             <ContactInfo />
 
             {/* Contact Form */}
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="md:col-span-3 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-800/50 hover:border-emerald-500/30 dark:hover:border-[#00FF00]/30 transition-all duration-300"
+              className="md:col-span-3 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200/50 dark:border-gray-800/50 hover:border-emerald-500/30 dark:hover:border-[#00FF00]/30 transition-all duration-300"
             >
-              <div className="space-y-8">
+              {/* Desktop Title - Only visible on medium screens and up */}
+              <div className="hidden md:block mb-8">
+                <h1 className="text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-[#00FF00]">
+                  Get in Touch
+                </h1>
+                <p className="mt-2 text-gray-600 dark:text-gray-300">
+                  I'd love to hear from you!
+                </p>
+              </div>
+
+              <div className="space-y-6 sm:space-y-8">
                 <div>
                   <label
                     htmlFor="from_name"
-                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
+                    className="block text-base sm:text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-2 sm:mb-3"
                   >
                     Name
                   </label>
                   <div className="relative group">
                     <FontAwesomeIcon
                       icon={faUser}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
+                      className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
                     />
                     <input
                       id="from_name"
@@ -116,7 +136,7 @@ const Contact = () => {
                       required
                       value={formData.from_name}
                       onChange={handleChange}
-                      className="pl-12 w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+                      className="pl-10 sm:pl-12 w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 text-sm sm:text-base"
                       placeholder="Your name"
                     />
                   </div>
@@ -125,14 +145,14 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="reply_to"
-                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
+                    className="block text-base sm:text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-2 sm:mb-3"
                   >
                     Email
                   </label>
                   <div className="relative group">
                     <FontAwesomeIcon
                       icon={faEnvelope}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
+                      className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
                     />
                     <input
                       id="reply_to"
@@ -141,7 +161,7 @@ const Contact = () => {
                       required
                       value={formData.reply_to}
                       onChange={handleChange}
-                      className="pl-12 w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+                      className="pl-10 sm:pl-12 w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 text-sm sm:text-base"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -150,7 +170,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
+                    className="block text-base sm:text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-2 sm:mb-3"
                   >
                     Message
                   </label>
@@ -160,8 +180,8 @@ const Contact = () => {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    rows={6}
-                    className="w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+                    rows={5}
+                    className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 text-sm sm:text-base"
                     placeholder="Your message..."
                   />
                 </div>
@@ -169,7 +189,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-emerald-400 dark:from-[#00FF00] dark:to-emerald-400 text-white dark:text-gray-900 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-500 dark:hover:from-[#00FF00] dark:hover:to-[#00FF00] focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-emerald-500/20 dark:hover:shadow-[#00FF00]/20"
+                  className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-emerald-500 to-emerald-400 dark:from-[#00FF00] dark:to-emerald-400 text-white dark:text-gray-900 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-500 dark:hover:from-[#00FF00] dark:hover:to-[#00FF00] focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-emerald-500/20 dark:hover:shadow-[#00FF00]/20 text-sm sm:text-base"
                 >
                   <FontAwesomeIcon
                     icon={faPaperPlane}
@@ -182,10 +202,10 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Background decorations */}
+        {/* Background decorations - adjusted for mobile */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl" />
-          <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute -top-1/4 -right-1/4 w-2/3 sm:w-1/2 h-1/2 bg-gradient-to-bl from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl opacity-75 sm:opacity-100" />
+          <div className="absolute -bottom-1/4 -left-1/4 w-2/3 sm:w-1/2 h-1/2 bg-gradient-to-tr from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl opacity-75 sm:opacity-100" />
         </div>
       </div>
     </PageLayout>
