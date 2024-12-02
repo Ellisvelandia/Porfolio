@@ -4,6 +4,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { gsap } from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -14,9 +15,9 @@ const Hero = () => {
   const highlightRef = useRef(null);
 
   const socialLinks = [
-    { icon: faGithub, url: 'https://github.com/Ellisvelandia', label: 'GitHub' },
-    { icon: faLinkedin, url: 'https://linkedin.com/in/ellisvelandia', label: 'LinkedIn' },
-    { icon: faEnvelope, url: 'mailto:eyis619@gmail.com', label: 'Email' },
+    { icon: faGithub, url: 'https://github.com/Ellisvelandia', label: 'GitHub', external: true },
+    { icon: faLinkedin, url: 'https://linkedin.com/in/ellisvelandia', label: 'LinkedIn', external: true },
+    { icon: faEnvelope, url: '/contact', label: 'Contact', external: false },
   ];
 
   useEffect(() => {
@@ -80,20 +81,35 @@ const Hero = () => {
           className="flex justify-center items-center space-x-8"
         >
           {socialLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-4"
-              aria-label={link.label}
-            >
-              <span className="absolute inset-0 w-full h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
-              <FontAwesomeIcon 
-                icon={link.icon} 
-                className="relative text-2xl text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transform group-hover:scale-110 transition-all duration-300"
-              />
-            </a>
+            link.external ? (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4"
+                aria-label={link.label}
+              >
+                <span className="absolute inset-0 w-full h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
+                <FontAwesomeIcon 
+                  icon={link.icon} 
+                  className="relative text-2xl text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transform group-hover:scale-110 transition-all duration-300"
+                />
+              </a>
+            ) : (
+              <Link
+                key={index}
+                to={link.url}
+                className="group relative p-4"
+                aria-label={link.label}
+              >
+                <span className="absolute inset-0 w-full h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out" />
+                <FontAwesomeIcon 
+                  icon={link.icon} 
+                  className="relative text-2xl text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transform group-hover:scale-110 transition-all duration-300"
+                />
+              </Link>
+            )
           ))}
         </div>
       </div>
