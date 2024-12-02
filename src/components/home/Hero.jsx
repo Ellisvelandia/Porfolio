@@ -128,7 +128,7 @@ const Hero = () => {
           theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
         } text-[10px] md:text-sm whitespace-pre opacity-60`}
         style={{ 
-          textShadow: theme === 'dark'
+          textShadow: theme === 'dark'  
             ? '0 0 10px rgba(0, 255, 140, 0.3)'
             : '0 0 10px rgba(0, 179, 127, 0.3)'
         }}
@@ -137,7 +137,7 @@ const Hero = () => {
       <div className="relative w-full max-w-5xl mx-auto px-4 py-8 md:py-16 sm:px-6 lg:px-8 text-center z-10">
         <h1 
           ref={titleRef}
-          className={`text-3xl sm:text-4xl md:text-7xl font-bold mb-6 md:mb-8 ${
+          className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-24 ${
             theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
           }`}
           style={{ 
