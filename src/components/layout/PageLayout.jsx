@@ -1,4 +1,5 @@
 import React from 'react';
+import './PageLayout.css';
 
 const PageLayout = ({ children }) => {
   // Matrix characters for more variety
@@ -17,16 +18,17 @@ const PageLayout = ({ children }) => {
             {Array(40).fill(0).map((_, i) => (
               <div key={i} className="relative h-screen overflow-hidden font-mono text-xs">
                 <div 
-                  className="absolute whitespace-pre text-emerald-900/80"
+                  className={`matrix-column text-emerald-900/80`}
                   style={{
-                    animation: `fall ${8 + Math.random() * 5}s linear infinite`,
-                    animationDelay: `${Math.random() * -15}s`,
-                    transform: 'translateY(-100%)'
+                    animationDuration: `${8 + Math.random() * 5}s`,
+                    animationDelay: `${Math.random() * -15}s`
                   }}
                 >
-                  {Array(100).fill(0).map(() => 
-                    matrixChars[Math.floor(Math.random() * matrixChars.length)]
-                  ).join('\n')}
+                  {Array(100).fill(0).map((_, j) => (
+                    <span key={j} className="block">
+                      {matrixChars[Math.floor(Math.random() * matrixChars.length)]}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -39,16 +41,17 @@ const PageLayout = ({ children }) => {
             {Array(40).fill(0).map((_, i) => (
               <div key={i} className="relative h-screen overflow-hidden font-mono text-xs">
                 <div 
-                  className="absolute whitespace-pre text-emerald-400/80"
+                  className={`matrix-column text-green-500/80`}
                   style={{
-                    animation: `fall ${8 + Math.random() * 5}s linear infinite`,
-                    animationDelay: `${Math.random() * -15}s`,
-                    transform: 'translateY(-100%)'
+                    animationDuration: `${8 + Math.random() * 5}s`,
+                    animationDelay: `${Math.random() * -15}s`
                   }}
                 >
-                  {Array(100).fill(0).map(() => 
-                    matrixChars[Math.floor(Math.random() * matrixChars.length)]
-                  ).join('\n')}
+                  {Array(100).fill(0).map((_, j) => (
+                    <span key={j} className="block">
+                      {matrixChars[Math.floor(Math.random() * matrixChars.length)]}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -71,12 +74,6 @@ const PageLayout = ({ children }) => {
 
       {/* Content */}
       <div className="relative z-10 h-full w-full px-4 pt-24 md:pt-28">
-        <style jsx global>{`
-          @keyframes fall {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-          }
-        `}</style>
         {children}
       </div>
     </div>

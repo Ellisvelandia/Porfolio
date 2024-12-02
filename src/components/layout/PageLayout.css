@@ -1,0 +1,11 @@
+.matrix-column {
+  position: absolute;
+  white-space: pre;
+  transform: translateY(-100%);
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
