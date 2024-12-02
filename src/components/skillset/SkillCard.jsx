@@ -1,11 +1,59 @@
 import React from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 const SkillCard = ({ name, icon, category }) => {
+  const { theme } = useTheme();
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-3 md:p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-      <div className="text-2xl md:text-4xl mb-2 md:mb-4">{icon}</div>
-      <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-1 md:mb-2">{name}</h3>
-      <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 capitalize">{category}</p>
+    <div className={`
+      group relative p-5 rounded-xl
+      transition-all duration-300 ease-in-out
+      backdrop-blur-sm
+      border-2
+      hover:scale-[1.02]
+      ${theme === 'dark'
+        ? 'bg-matrix-bg-dark/60 hover:bg-matrix-bg-dark/80 border-matrix-dark/30 hover:border-matrix-accent-dark'
+        : 'bg-white/80 hover:bg-white border-matrix-light/30 hover:border-matrix-accent-light'
+      }
+      ${theme === 'dark' 
+        ? 'shadow-[0_4px_20px_-12px_rgba(0,230,160,0.5)]' 
+        : 'shadow-[0_4px_20px_-12px_rgba(0,179,127,0.25)]'
+      }
+    `}>
+      <div className="flex items-center gap-4">
+        <div className={`
+          flex-shrink-0 text-3xl p-3 rounded-lg
+          transition-colors duration-300
+          ${theme === 'dark'
+            ? 'bg-matrix-darkest/30 text-matrix-light'
+            : 'bg-matrix-lighter text-matrix-dark'
+          }
+        `}>
+          {icon}
+        </div>
+        <div className="flex-grow">
+          <h3 className={`
+            text-lg font-bold mb-2
+            transition-colors duration-300
+            ${theme === 'dark'
+              ? 'text-matrix-text-dark group-hover:text-matrix-accent-dark'
+              : 'text-matrix-text-light group-hover:text-matrix-accent-light'
+            }
+          `}>
+            {name}
+          </h3>
+          <div className={`
+            inline-block px-3 py-1 rounded-full text-sm font-medium
+            transition-colors duration-300
+            ${theme === 'dark'
+              ? 'bg-matrix-dark/30 text-matrix-light'
+              : 'bg-matrix-lighter text-matrix-dark'
+            }
+          `}>
+            {category}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
