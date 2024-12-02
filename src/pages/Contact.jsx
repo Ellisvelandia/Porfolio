@@ -31,7 +31,6 @@ const Contact = () => {
   const formRef = useRef(null);
   const contentRef = useRef(null);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -84,16 +83,10 @@ const Contact = () => {
     <PageLayout>
       <Toaster position="top-right" />
       <div className="relative min-h-screen py-20 px-4">
-        {/* Background decorations */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-blue-100/20 to-transparent dark:from-blue-900/10 rounded-full" />
-          <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/20 to-transparent dark:from-blue-900/10 rounded-full" />
-        </div>
-
         <div className="relative max-w-6xl mx-auto">
           <div
             ref={contentRef}
-            className="grid md:grid-cols-5 gap-8 items-start"
+            className="grid md:grid-cols-5 gap-12 items-start"
           >
             <ContactInfo />
 
@@ -101,20 +94,20 @@ const Contact = () => {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="md:col-span-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 shadow-lg"
+              className="md:col-span-3 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-800/50 hover:border-emerald-500/30 dark:hover:border-[#00FF00]/30 transition-all duration-300"
             >
-              <div className="space-y-6">
+              <div className="space-y-8">
                 <div>
                   <label
                     htmlFor="from_name"
-                    className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2"
+                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
                   >
                     Name
                   </label>
-                  <div className="relative">
+                  <div className="relative group">
                     <FontAwesomeIcon
                       icon={faUser}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
                     />
                     <input
                       id="from_name"
@@ -123,7 +116,7 @@ const Contact = () => {
                       required
                       value={formData.from_name}
                       onChange={handleChange}
-                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="pl-12 w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="Your name"
                     />
                   </div>
@@ -132,14 +125,14 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="reply_to"
-                    className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2"
+                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
                   >
                     Email
                   </label>
-                  <div className="relative">
+                  <div className="relative group">
                     <FontAwesomeIcon
                       icon={faEnvelope}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-500 dark:text-[#00FF00] group-hover:text-emerald-600 dark:group-hover:text-[#00FF00] transition-colors"
                     />
                     <input
                       id="reply_to"
@@ -148,7 +141,7 @@ const Contact = () => {
                       required
                       value={formData.reply_to}
                       onChange={handleChange}
-                      className="pl-10 w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="pl-12 w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -157,7 +150,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-2"
+                    className="block text-lg font-medium text-emerald-600 dark:text-[#00FF00] mb-3"
                   >
                     Message
                   </label>
@@ -168,7 +161,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className="w-full px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                    className="w-full px-4 py-4 bg-gray-50/80 dark:bg-gray-800/50 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:border-transparent hover:border-emerald-500/50 dark:hover:border-[#00FF00]/50 transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
                     placeholder="Your message..."
                   />
                 </div>
@@ -176,25 +169,23 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`group w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium hover:from-blue-500 hover:to-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 ${
-                    isSubmitting ? "opacity-75 cursor-not-allowed" : ""
-                  }`}
+                  className="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-emerald-400 dark:from-[#00FF00] dark:to-emerald-400 text-white dark:text-gray-900 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-500 dark:hover:from-[#00FF00] dark:hover:to-[#00FF00] focus:ring-2 focus:ring-emerald-500 dark:focus:ring-[#00FF00] focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-emerald-500/20 dark:hover:shadow-[#00FF00]/20"
                 >
-                  <span className="flex items-center justify-center">
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                    <FontAwesomeIcon
-                      icon={faPaperPlane}
-                      className={`ml-2 transform transition-all duration-300 ${
-                        isSubmitting
-                          ? "animate-pulse"
-                          : "group-hover:translate-x-1"
-                      }`}
-                    />
-                  </span>
+                  <FontAwesomeIcon
+                    icon={faPaperPlane}
+                    className={`mr-2 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'}`}
+                  />
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
             </form>
           </div>
+        </div>
+
+        {/* Background decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-bl from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-emerald-100/20 dark:from-emerald-900/10 to-transparent rounded-full blur-3xl" />
         </div>
       </div>
     </PageLayout>
