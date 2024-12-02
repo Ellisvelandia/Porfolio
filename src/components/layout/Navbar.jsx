@@ -7,7 +7,7 @@ import { useTheme } from '../../context/ThemeContext';
 import gsap from 'gsap';
 
 const Navbar = () => {
-  const { isDark, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const overlayRef = useRef(null);
@@ -88,13 +88,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 transition-colors duration-200 backdrop-blur-md border-b dark:border-[#00FF00]/20 border-gray-200/30 dark:bg-black/75 bg-white/75">
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-200 backdrop-blur-md border-b dark:border-[#00FF00]/20 border-gray-200/30 bg-white/75 dark:bg-black/75">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link 
                 to="/" 
-                className="flex items-center space-x-2 transition-colors duration-200"
+                className="flex items-center space-x-2 transition-colors duration-200 dark:text-[#00FF00] text-gray-900"
               >
                 <FontAwesomeIcon icon={faCode} className="text-xl" />
                 <span className="font-mono font-bold text-lg tracking-wider">ELLIS</span>
@@ -107,20 +107,27 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="flex items-center space-x-2 px-3 py-2 text-sm font-medium transition-all duration-200"
+                  className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium transition-all duration-200 
+                    ${location.pathname === item.path 
+                      ? 'dark:text-[#00FF00] text-blue-600' 
+                      : 'dark:text-gray-300 text-gray-600 dark:hover:text-[#00FF00] hover:text-blue-600'
+                    }`}
                 >
-                  <FontAwesomeIcon icon={item.icon} className={`text-sm ${isDark ? 'text-inherit group-hover:text-[#00FF00]' : ''}`} />
+                  <FontAwesomeIcon 
+                    icon={item.icon} 
+                    className="text-sm"
+                  />
                   <span className="ml-2">{item.name}</span>
                 </Link>
               ))}
               <button
                 onClick={toggleTheme}
-                className="p-2 transition-all duration-200 rounded-lg"
+                className="p-2 transition-all duration-200 rounded-lg dark:text-[#00FF00] text-gray-600 dark:hover:bg-[#00FF00]/10 hover:bg-gray-100"
                 aria-label="Toggle theme"
               >
                 <FontAwesomeIcon 
-                  icon={isDark ? faCloudMoon : faCloudSun} 
-                  className={`text-xl ${isDark ? 'text-[#00FF00]' : ''}`}
+                  icon={theme === 'dark' ? faCloudMoon : faCloudSun} 
+                  className="text-xl"
                 />
               </button>
             </div>
@@ -130,7 +137,7 @@ const Navbar = () => {
               <button
                 ref={menuToggleRef}
                 onClick={() => setIsOpen(true)}
-                className="p-2 transition-colors duration-200"
+                className="p-2 transition-colors duration-200 dark:text-[#00FF00] text-gray-600"
                 aria-label="Open menu"
               >
                 <FontAwesomeIcon icon={faBars} className="text-xl" />
@@ -146,7 +153,7 @@ const Navbar = () => {
           <div
             ref={overlayRef}
             className={`fixed inset-0 z-50 transition-opacity duration-300 ${
-              isDark ? 'bg-black/90' : 'bg-white/95'
+              theme === 'dark' ? 'bg-black/90' : 'bg-white/95'
             } backdrop-blur-md`}
           >
             <div
@@ -155,15 +162,15 @@ const Navbar = () => {
             >
               {/* Header */}
               <div className={`flex justify-between items-center p-6 ${
-                isDark ? 'border-b border-[#00FF00]/20' : 'border-b border-gray-200'
+                theme === 'dark' ? 'border-b border-[#00FF00]/20' : 'border-b border-gray-200'
               }`}>
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon 
                     icon={faCode} 
-                    className={isDark ? 'text-[#00FF00]/90' : 'text-gray-900'} 
+                    className={theme === 'dark' ? 'text-[#00FF00]/90' : 'text-gray-900'} 
                   />
                   <span className={`font-mono font-bold tracking-wider ${
-                    isDark ? 'text-[#00FF00]/90' : 'text-gray-900'
+                    theme === 'dark' ? 'text-[#00FF00]/90' : 'text-gray-900'
                   }`}>
                     ELLIS
                   </span>
@@ -172,7 +179,7 @@ const Navbar = () => {
                   ref={closeButtonRef}
                   onClick={() => setIsOpen(false)}
                   className={`p-2 transition-all duration-200 hover:rotate-90 transform ${
-                    isDark 
+                    theme === 'dark' 
                       ? 'text-[#00FF00]/80 hover:text-[#00FF00]' 
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
@@ -193,20 +200,20 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className={`group flex items-center space-x-4 p-4 rounded-lg transition-all duration-200 ${
                         isActive(item.path)
-                          ? isDark
+                          ? theme === 'dark'
                             ? 'text-[#00FF00] bg-[#00FF00]/5'
                             : 'text-black bg-gray-100'
-                          : isDark
+                          : theme === 'dark'
                             ? 'text-[#00FF00]/60 hover:text-[#00FF00] hover:bg-[#00FF00]/5'
                             : 'text-gray-700 hover:text-black hover:bg-gray-50'
                       }`}
                     >
                       <div className={`flex items-center justify-center w-10 h-10 rounded-lg ${
                         isActive(item.path)
-                          ? isDark
+                          ? theme === 'dark'
                             ? 'bg-[#00FF00]/5'
                             : 'bg-gray-200'
-                          : isDark
+                          : theme === 'dark'
                             ? 'bg-gray-900'
                             : 'bg-gray-100'
                       }`}>
@@ -214,7 +221,7 @@ const Navbar = () => {
                           icon={item.icon} 
                           className={`text-lg ${
                             isActive(item.path)
-                              ? isDark
+                              ? theme === 'dark'
                                 ? 'text-[#00FF00]'
                                 : 'text-black'
                               : 'group-hover:text-current'
@@ -233,28 +240,28 @@ const Navbar = () => {
                     setIsOpen(false);
                   }}
                   className={`mt-6 w-full group flex items-center space-x-4 p-4 rounded-lg transition-all duration-200 ${
-                    isDark
+                    theme === 'dark'
                       ? 'text-[#00FF00]/60 hover:text-[#00FF00] hover:bg-[#00FF00]/5'
                       : 'text-gray-700 hover:text-black hover:bg-gray-50'
                   }`}
                 >
                   <div className={`flex items-center justify-center w-10 h-10 rounded-lg ${
-                    isDark ? 'bg-gray-900' : 'bg-gray-100'
+                    theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100'
                   }`}>
                     <FontAwesomeIcon
-                      icon={isDark ? faCloudMoon : faCloudSun}
+                      icon={theme === 'dark' ? faCloudMoon : faCloudSun}
                       className="text-lg"
                     />
                   </div>
                   <span className="font-medium">
-                    {isDark ? 'Dark Mode' : 'Light Mode'}
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                   </span>
                 </button>
               </div>
 
               {/* Footer with social links */}
               <div className={`p-6 ${
-                isDark ? 'border-t border-[#00FF00]/20' : 'border-t border-gray-200'
+                theme === 'dark' ? 'border-t border-[#00FF00]/20' : 'border-t border-gray-200'
               }`}>
                 <div className="flex justify-center space-x-6">
                   {socialLinks.map((link, index) => (
@@ -264,7 +271,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`p-2 transition-colors duration-200 ${
-                        isDark
+                        theme === 'dark'
                           ? 'text-[#00FF00]/60 hover:text-[#00FF00]'
                           : 'text-gray-600 hover:text-gray-900'
                       }`}
