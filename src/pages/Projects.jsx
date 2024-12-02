@@ -194,15 +194,6 @@ const Projects = () => {
         ref={containerRef} 
         className={`relative ${isMobile ? 'min-h-[100vh]' : 'min-h-screen'} overflow-hidden perspective-1000`}
       >
-        {/* Ambient Background */}
-        <div 
-          className="ambient-bg absolute inset-0 opacity-15"
-          style={{
-            background: "linear-gradient(45deg, #0f172a, #1e293b, #0f172a)",
-            backgroundSize: "400% 400%",
-            filter: "blur(120px)"
-          }}
-        />
 
         {/* Desktop Navigation Controls - Hidden on Mobile */}
         {!isMobile && (
