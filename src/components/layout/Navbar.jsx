@@ -84,34 +84,60 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`${
-                    isActive(item.path)
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  } block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <button
-                onClick={toggleTheme}
-                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+          <>
+            {/* Overlay */}
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsOpen(false)} />
+            
+            {/* Menu */}
+            <div className="fixed inset-0 z-50">
+              <div 
+                className="h-screen w-screen p-4"
+                style={{
+                  backgroundImage: `url(${isDark ? '/wall.jpg' : '/menu.jpg'})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundColor: isDark ? 'rgb(17, 24, 39)' : 'white'
+                }}
               >
-                <FontAwesomeIcon 
-                  icon={isDark ? faCloudSun : faCloudMoon} 
-                  className="mr-2"
-                />
-                {isDark ? 'Light Mode' : 'Dark Mode'}
-              </button>
+                <div className="flex justify-end mb-4">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                  >
+                    <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                      <path d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`${
+                        isActive(item.path)
+                          ? 'text-blue-600 dark:text-blue-400'
+                          : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                      } block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <button
+                    onClick={toggleTheme}
+                    className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                  >
+                    <FontAwesomeIcon 
+                      icon={isDark ? faCloudSun : faCloudMoon} 
+                      className="mr-2"
+                    />
+                    {isDark ? 'Light Mode' : 'Dark Mode'}
+                  </button>
+                </div>  
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </nav>
