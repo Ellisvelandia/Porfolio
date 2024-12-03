@@ -124,7 +124,7 @@ const Hero = () => {
       {/* Terminal Text */}
       <div 
         ref={terminalRef}
-        className={`absolute top-16 md:top-1/4 left-4 md:left-8 font-mono ${
+        className={`absolute top-16 md:top-1/3 left-4 md:left-8 font-mono ${
           theme === 'dark' ? 'text-matrix-accent-dark' : 'text-matrix-accent-light'
         } text-[10px] md:text-sm whitespace-pre opacity-60`}
         style={{ 
