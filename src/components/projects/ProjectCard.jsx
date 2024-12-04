@@ -169,7 +169,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
       {/* Content */}
       <div
         ref={contentRef}
-        className={`absolute inset-0 p-4 sm:p-6 flex flex-col justify-end transform-gpu ${isActive ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-2'} transition-all duration-300`}
+        className={`absolute inset-0 p-4 sm:p-6 flex flex-col justify-end transform-gpu z-20 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-2'} transition-all duration-300`}
       >
         <div className="space-y-2 sm:space-y-3">
           {/* Tags */}
@@ -209,7 +209,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
                 ? 'bg-green-500/20 hover:bg-green-500/30 text-green-400'
                 : 'bg-emerald-600 hover:bg-emerald-500 text-emerald-100'
               }
-              backdrop-blur-sm border
+              backdrop-blur-sm border z-30 relative
               ${theme === 'dark'
                 ? 'border-green-400/50 hover:border-green-400/70'
                 : 'border-emerald-400/70 hover:border-emerald-300'
@@ -224,19 +224,8 @@ const ProjectCard = ({ project, isActive, theme }) => {
           >
             <span className="relative z-10 font-medium">Visit Project</span>
             <div className="relative z-10 flex items-center">
-              <div className={`
-                flex items-center transition-all duration-300 transform
-                group-hover:translate-x-1
-              `}>
-                <span className={`
-                  w-5 h-5 flex items-center justify-center
-                  transition-transform duration-300 transform
-                  group-hover:rotate-45
-                  ${theme === 'dark'
-                    ? 'text-green-400'
-                    : 'text-green-500 hover:text-green-400'
-                  }
-                `}>
+              <div className={`flex items-center transition-all duration-300 transform group-hover:translate-x-1`}>
+                <span className={`w-5 h-5 flex items-center justify-center transition-transform duration-300 transform group-hover:rotate-45 ${theme === 'dark' ? 'text-green-400' : 'text-green-500 hover:text-green-400'}`}>
                   <svg 
                     viewBox="0 0 24 24" 
                     fill="none" 
@@ -255,14 +244,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
                 </span>
               </div>
             </div>
-            <div className={`
-              absolute inset-0 -z-10 opacity-0 group-hover:opacity-100
-              transition-all duration-300
-              ${theme === 'dark' 
-                ? 'bg-gradient-to-r from-green-500/0 via-green-500/20 to-green-500/30'
-                : 'bg-gradient-to-r from-emerald-600/0 via-emerald-600/20 to-emerald-600/30'
-              }
-            `} />
+            <div className={`absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 ${theme === 'dark' ? 'bg-gradient-to-r from-green-500/0 via-green-500/20 to-green-500/30' : 'bg-gradient-to-r from-emerald-600/0 via-emerald-600/20 to-emerald-600/30'}`} />
           </button>
         </div>
       </div>
