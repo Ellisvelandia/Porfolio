@@ -17,44 +17,35 @@ const Certifications = () => {
   ];
 
   return (
-    <section className="mb-8 sm:mb-12 md:mb-16">
-      <h2 className={`text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 ${
+    <section className="mb-6">
+      <h2 className={`text-xl sm:text-3xl font-bold mb-4 sm:mb-8 ${
         theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
-      } tracking-wide`} style={{
-        textShadow: theme === 'dark'
-          ? '0 0 10px rgba(0, 255, 140, 0.3)'
-          : '0 0 15px rgba(16, 185, 129, 0.4)'
-      }}>
+      } tracking-wide`}>
         Certifications
       </h2>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6">
         {certifications.map((cert) => (
           <div
             key={cert.id}
-            className={`relative border ${
+            className={`relative ${
               theme === 'dark' 
-                ? 'bg-matrix-darkest/40 border-matrix-accent-dark/20' 
-                : 'bg-emerald-50/80 border-emerald-200'
-            } rounded-lg p-4 sm:p-6 backdrop-blur-sm transform transition-all duration-300 hover:scale-[1.02]`}
-            style={{
-              boxShadow: theme === 'dark'
-                ? '0 4px 20px rgba(0, 255, 140, 0.1)'
-                : '0 4px 20px rgba(16, 185, 129, 0.15)'
-            }}
+                ? 'bg-matrix-darkest/40' 
+                : 'bg-emerald-50/80'
+            } rounded-lg p-3 sm:p-6`}
           >
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 mb-3 sm:mb-4">
+            <div className="flex flex-col gap-1 sm:gap-4 mb-3 sm:mb-4">
               <div>
-                <h3 className={`text-lg sm:text-xl font-semibold ${
+                <h3 className={`text-base sm:text-xl font-semibold ${
                   theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
                 }`}>
                   {cert.name}
                 </h3>
-                <p className={`text-sm sm:text-base ${theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-emerald-700/90'}`}>
+                <p className={`text-xs sm:text-base ${theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-emerald-700/90'}`}>
                   {cert.issuer}
                 </p>
               </div>
-              <span className={`text-xs sm:text-sm ${
+              <span className={`text-[10px] sm:text-sm ${
                 theme === 'dark' ? 'text-matrix-text-dark/70' : 'text-emerald-600/80'
               }`}>
                 {cert.date}
@@ -62,14 +53,11 @@ const Certifications = () => {
             </div>
 
             {cert.img && (
-              <div className="mb-3 sm:mb-4 relative group">
-                <div className={`absolute inset-0 rounded-lg ${
-                  theme === 'dark' ? 'bg-matrix-accent-dark/5' : 'bg-emerald-200/10'
-                }`} />
+              <div className="mb-3 sm:mb-4 w-full aspect-[16/9]">
                 <img
                   src={cert.img}
                   alt={cert.name}
-                  className={`w-full h-32 sm:h-40 object-contain rounded-lg p-2 ${
+                  className={`w-full h-full object-contain rounded-lg ${
                     theme === 'dark' ? 'bg-matrix-darkest/60' : 'bg-emerald-50/90'
                   }`}
                 />
@@ -82,30 +70,25 @@ const Certifications = () => {
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-block text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2 rounded-md border transition-all duration-300 ${
+                  className={`inline-block text-xs sm:text-base px-2 sm:px-4 py-1 sm:py-2 rounded-md ${
                     theme === 'dark'
-                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark border-matrix-accent-dark/30 hover:bg-matrix-accent-dark/20'
-                      : 'bg-emerald-50/90 text-emerald-600 border-emerald-200 hover:bg-emerald-100/90'
+                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark hover:bg-matrix-accent-dark/20'
+                      : 'bg-emerald-50/90 text-emerald-600 hover:bg-emerald-100/90'
                   }`}
-                  style={{
-                    textShadow: theme === 'dark'
-                      ? '0 0 10px rgba(0, 255, 140, 0.2)'
-                      : '0 0 10px rgba(16, 185, 129, 0.3)'
-                  }}
                 >
                   View Certificate
                 </a>
               </div>
             )}
 
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {cert.tags.map((tag, index) => (
                 <span
                   key={index}
-                  className={`px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm rounded ${
+                  className={`px-1.5 sm:px-3 py-0.5 text-[10px] sm:text-sm rounded ${
                     theme === 'dark'
-                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark border border-matrix-accent-dark/30'
-                      : 'bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm'
+                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark'
+                      : 'bg-emerald-100 text-emerald-700'
                   }`}
                 >
                   {tag}

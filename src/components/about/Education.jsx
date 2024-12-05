@@ -22,56 +22,47 @@ const Education = () => {
   ];
 
   return (
-    <section className="mb-8 sm:mb-12 md:mb-16">
-      <h2 className={`text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 ${
+    <section className="mb-6">
+      <h2 className={`text-xl sm:text-3xl font-bold mb-4 sm:mb-8 ${
         theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
-      } tracking-wide`} style={{
-        textShadow: theme === 'dark'
-          ? '0 0 10px rgba(0, 255, 140, 0.3)'
-          : '0 0 15px rgba(16, 185, 129, 0.4)'
-      }}>
+      } tracking-wide`}>
         Education
       </h2>
       
-      <div className="space-y-6 sm:space-y-8">
+      <div className="space-y-4 sm:space-y-8">
         {education.map((edu, index) => (
           <div 
             key={index} 
-            className={`relative border ${
+            className={`relative ${
               theme === 'dark' 
-                ? 'bg-matrix-darkest/40 border-matrix-accent-dark/20' 
-                : 'bg-emerald-50/80 border-emerald-200'
-            } rounded-lg p-4 sm:p-6 backdrop-blur-sm`}
-            style={{
-              boxShadow: theme === 'dark'
-                ? '0 4px 20px rgba(0, 255, 140, 0.1)'
-                : '0 4px 20px rgba(16, 185, 129, 0.15)'
-            }}
+                ? 'bg-matrix-darkest/40' 
+                : 'bg-emerald-50/80'
+            } rounded-lg p-3 sm:p-6`}
           >
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 mb-4">
+            <div className="flex flex-col gap-1 sm:gap-4 mb-3 sm:mb-4">
               <div>
-                <h3 className={`text-lg sm:text-xl font-semibold ${
+                <h3 className={`text-base sm:text-xl font-semibold ${
                   theme === 'dark' ? 'text-matrix-accent-dark' : 'text-emerald-600'
                 }`}>{edu.school}</h3>
-                <p className={`text-sm sm:text-base ${theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-emerald-700/90'}`}>
+                <p className={`text-xs sm:text-base ${theme === 'dark' ? 'text-matrix-text-dark/80' : 'text-emerald-700/90'}`}>
                   {edu.degree}
                 </p>
               </div>
-              <span className={`text-xs sm:text-sm ${
+              <span className={`text-[10px] sm:text-sm ${
                 theme === 'dark' ? 'text-matrix-text-dark/70' : 'text-emerald-600/80'
               }`}>
                 {edu.period}
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
+            <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
               {edu.details.map((detail, detailIndex) => (
                 <span
                   key={detailIndex}
-                  className={`px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm rounded ${
+                  className={`px-1.5 sm:px-3 py-0.5 text-[10px] sm:text-sm rounded ${
                     theme === 'dark'
-                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark border border-matrix-accent-dark/30'
-                      : 'bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm'
+                      ? 'bg-matrix-darkest/60 text-matrix-accent-dark'
+                      : 'bg-emerald-100 text-emerald-700'
                   }`}
                 >
                   {detail}
@@ -79,7 +70,7 @@ const Education = () => {
               ))}
             </div>
 
-            <p className={`whitespace-pre-line text-sm sm:text-base leading-relaxed ${
+            <p className={`text-xs sm:text-base leading-relaxed ${
               theme === 'dark' ? 'text-matrix-text-dark/90' : 'text-emerald-800'
             }`}>
               {edu.description}
