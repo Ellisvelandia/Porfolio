@@ -88,16 +88,6 @@ const Contact = () => {
             ref={contentRef}
             className="grid grid-cols-1 md:grid-cols-5 gap-6 sm:gap-8 md:gap-12 items-start"
           >
-            {/* Mobile Title - Only visible on small screens */}
-            <div className="block md:hidden mb-6">
-              <h1 className="text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-[#00FF00] text-center">
-                Get in Touch
-              </h1>
-              <p className="mt-2 text-gray-600 dark:text-gray-300 text-center">
-                I'd love to hear from you!
-              </p>
-            </div>
-
             <ContactInfo />
 
             {/* Contact Form */}
@@ -106,8 +96,7 @@ const Contact = () => {
               onSubmit={handleSubmit}
               className="md:col-span-3 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200/50 dark:border-gray-800/50 hover:border-emerald-500/30 dark:hover:border-[#00FF00]/30 transition-all duration-300"
             >
-              {/* Desktop Title - Only visible on medium screens and up */}
-              <div className="hidden md:block mb-8">
+              <div className="mb-8">
                 <h1 className="text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-[#00FF00]">
                   Get in Touch
                 </h1>
@@ -193,9 +182,13 @@ const Contact = () => {
                 >
                   <FontAwesomeIcon
                     icon={faPaperPlane}
-                    className={`mr-2 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'}`}
+                    className={`mr-2 ${
+                      isSubmitting
+                        ? "animate-pulse"
+                        : "group-hover:translate-x-1"
+                    }`}
                   />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </div>
             </form>
