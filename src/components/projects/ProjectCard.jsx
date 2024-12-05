@@ -100,7 +100,7 @@ const ProjectCard = ({ project, isActive, theme }) => {
       role="article"
       tabIndex={0}
       aria-label={`Project: ${project.title}`}
-      className={`relative w-full aspect-[16/12] sm:aspect-video rounded-xl overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 ${theme === 'dark' ? 'bg-black/90 border-green-400/60 focus:ring-green-400' : 'bg-emerald-900/95 border-emerald-400 focus:ring-emerald-400'} border-2`}
+      className={`relative w-full aspect-[4/3] sm:aspect-video rounded-xl overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 ${theme === 'dark' ? 'bg-black/90 border-green-400/60 focus:ring-green-400' : 'bg-emerald-900/95 border-emerald-400 focus:ring-emerald-400'} border`}
       style={{
         boxShadow: isActive ? (theme === 'dark' ? '0 8px 32px -4px rgba(74, 222, 128, 0.4)' : '0 8px 32px -4px rgba(16, 185, 129, 0.4)') : theme === 'dark' ? '0 4px 16px -4px rgba(74, 222, 128, 0.3)' : '0 4px 16px -4px rgba(16, 185, 129, 0.3)',
       }}
@@ -173,11 +173,11 @@ const ProjectCard = ({ project, isActive, theme }) => {
       >
         <div className="space-y-2 sm:space-y-3">
           {/* Tags */}
-          <div className="flex flex-wrap gap-2" aria-label="Project technologies">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2" aria-label="Project technologies">
             {project.tags.map((tag, index) => (
               <span
                 key={index}
-                className={`text-xs px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-green-900/60 text-green-300' : 'bg-emerald-700 text-emerald-100'}`}
+                className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full ${theme === 'dark' ? 'bg-green-900/60 text-green-300' : 'bg-emerald-700 text-emerald-100'}`}
               >
                 {tag}
               </span>
@@ -185,12 +185,12 @@ const ProjectCard = ({ project, isActive, theme }) => {
           </div>
 
           {/* Title */}
-          <h3 className={`text-xl sm:text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.3)]' : 'text-emerald-300 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'}`}>
+          <h3 className={`text-lg sm:text-xl font-bold tracking-tight ${theme === 'dark' ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.3)]' : 'text-emerald-300 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]'}`}>
             {project.title}
           </h3>
 
           {/* Description */}
-          <p className={`text-sm sm:text-base font-light line-clamp-2 ${theme === 'dark' ? 'text-green-100' : 'text-emerald-100'}`}>
+          <p className={`text-xs sm:text-sm font-light line-clamp-2 ${theme === 'dark' ? 'text-green-100' : 'text-emerald-100'}`}>
             {project.description}
           </p>
 
@@ -203,13 +203,13 @@ const ProjectCard = ({ project, isActive, theme }) => {
               if (newWindow) newWindow.opener = null;
             }}
             className={`
-              group inline-flex items-center gap-2 px-4 py-2 rounded-lg 
-              transition-all duration-300 transform hover:-translate-y-0.5
+              group inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg 
+              transition-all duration-300 transform active:scale-95 hover:-translate-y-0.5
               ${theme === 'dark' 
                 ? 'bg-green-500/20 hover:bg-green-500/30 text-green-400'
                 : 'bg-emerald-600 hover:bg-emerald-500 text-emerald-100'
               }
-              backdrop-blur-sm border z-30 relative
+              backdrop-blur-sm border z-30 relative text-sm sm:text-base
               ${theme === 'dark'
                 ? 'border-green-400/50 hover:border-green-400/70'
                 : 'border-emerald-400/70 hover:border-emerald-300'

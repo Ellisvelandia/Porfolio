@@ -192,7 +192,7 @@ const Projects = () => {
     <PageLayout>
       <div 
         ref={containerRef} 
-        className={`relative ${isMobile ? 'min-h-[100vh]' : 'min-h-screen'} overflow-hidden perspective-1000`}
+        className={`relative ${isMobile ? 'min-h-[calc(100vh-4rem)]' : 'min-h-screen'} overflow-hidden perspective-1000 py-4 sm:py-8`}
       >
 
         {/* Desktop Navigation Controls - Hidden on Mobile */}
@@ -224,7 +224,7 @@ const Projects = () => {
         {/* Projects Carousel */}
         <div 
           ref={carouselRef}
-          className={`relative flex flex-col ${isMobile ? 'h-[400px]' : 'h-screen items-center justify-center'}`}
+          className={`relative flex flex-col ${isMobile ? 'h-[calc(100vh-8rem)]' : 'h-screen items-center justify-center'} gap-4`}
           style={{ 
             perspective: "1500px",
             transformStyle: "preserve-3d"
@@ -233,23 +233,24 @@ const Projects = () => {
           onTouchMove={isMobile ? onTouchMove : undefined}
           onTouchEnd={isMobile ? onTouchEnd : undefined}
         >
-          <div className={`relative ${isMobile ? 'h-[400px]' : 'h-full w-full'} flex items-center justify-center`}>
+          <div className={`relative ${isMobile ? 'h-full' : 'h-full w-full'} flex items-center justify-center`}>
             {projects.map((project, index) => (
               <div
                 key={project.id}
                 ref={el => projectsRef.current[index] = el}
-                className={`absolute w-full max-w-5xl px-4 md:px-8 transition-transform duration-700`}
+                className={`absolute w-full max-w-5xl px-3 sm:px-4 md:px-8 transition-transform duration-700`}
                 style={{
                   opacity: index === currentIndex ? 1 : 0.3,
                   transform: isMobile
-                    ? `translateY(${(index - currentIndex) * 40}%) 
-                       scale(${index === currentIndex ? 1 : 0.9})`
+                    ? `translateY(${(index - currentIndex) * 30}%) 
+                       scale(${index === currentIndex ? 1 : 0.95})`
                     : `translateX(${(index - currentIndex) * 100}%) 
                        scale(${index === currentIndex ? 1 : 0.85})
                        rotateY(${index === currentIndex ? 0 : (index < currentIndex ? -15 : 15)}deg)`,
                   transformOrigin: isMobile
                     ? (index < currentIndex ? "bottom center" : "top center")
                     : (index < currentIndex ? "right center" : "left center"),
+                  zIndex: index === currentIndex ? 10 : 0,
                 }}
               >
                 <ProjectCard 
@@ -265,41 +266,50 @@ const Projects = () => {
 
           {/* Mobile Navigation Controls */}
           {isMobile && (
-            <div className="flex flex-col gap-1 items-center mt-2">
-              <div className="text-[10px] flex items-center gap-2 bg-slaterounded-full/80 dark:bg-matrix-darkest/40 text-white dark:text-matrix-accent-dark/60 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                <span>Swipe or use buttons</span>
+            <div className="flex flex-col gap-2 items-center mt-auto pb-4">
+              <div className="text-xs flex items-center gap-2 bg-black/40 dark:bg-matrix-darkest/40 text-white/90 dark:text-matrix-accent-dark/80 px-3 py-1 rounded-full backdrop-blur-sm">
+                <span>Swipe or tap buttons</span>
                 <FontAwesomeIcon 
                   icon={faArrowDown} 
                   className="h-3 w-3 animate-bounce"
                 />
               </div>
-              <div className="flex justify-center items-center gap-2">
+              <div className="flex justify-center items-center gap-3">
                 <button
                   onClick={handlePrevious}
-                  className={`p-2 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
+                  disabled={currentIndex === 0}
+                  className={`p-3 rounded-full ${
+                    currentIndex === 0 
+                      ? 'bg-slate-800/40 text-white/40 cursor-not-allowed' 
+                      : 'bg-black/60 dark:bg-matrix-darkest/60 text-white/90 dark:text-matrix-accent-dark active:scale-95'
+                  } border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm transition-all duration-300`}
                 >
                   <FontAwesomeIcon 
                     icon={faChevronUp} 
-                    className="h-3 w-3"
+                    className="h-4 w-4"
                   />
                 </button>
-                <div className={`px-2 py-0.5 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark backdrop-blur-sm text-[10px]`}>
+                <div className={`px-3 py-1 rounded-full bg-black/60 dark:bg-matrix-darkest/60 text-white/90 dark:text-matrix-accent-dark backdrop-blur-sm text-sm font-medium`}>
                   {currentIndex + 1} / {projects.length}
                 </div>
                 <button
                   onClick={handleNext}
-                  className={`p-2 rounded-full bg-slate-800/80 dark:bg-matrix-darkest/60 text-white dark:text-matrix-accent-dark border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm hover:bg-slate-700/80 dark:hover:bg-matrix-darkest/80 transition-colors`}
+                  disabled={currentIndex === projects.length - 1}
+                  className={`p-3 rounded-full ${
+                    currentIndex === projects.length - 1
+                      ? 'bg-slate-800/40 text-white/40 cursor-not-allowed'
+                      : 'bg-black/60 dark:bg-matrix-darkest/60 text-white/90 dark:text-matrix-accent-dark active:scale-95'
+                  } border-slate-600/50 dark:border-matrix-accent-dark/30 border backdrop-blur-sm transition-all duration-300`}
                 >
                   <FontAwesomeIcon 
                     icon={faChevronDown} 
-                    className="h-3 w-3"
+                    className="h-4 w-4"
                   />
                 </button>
               </div>
             </div>
           )}
         </div>
-
       </div>
     </PageLayout>
   );
