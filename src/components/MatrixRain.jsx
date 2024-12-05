@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { MATRIX_CHARACTERS, ANIMATION_CONFIG, THEME_COLORS } from '../constants';
 
 const MatrixRain = () => {
   const canvasRef = useRef(null);
@@ -25,15 +26,14 @@ const MatrixRain = () => {
     
     setCanvasSize();
 
-    const matrix = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789";
-    const characters = matrix.split("");
-    const fontSize = 16; 
+    const characters = MATRIX_CHARACTERS.split("");
+    const fontSize = ANIMATION_CONFIG.fontSize;
     const columns = Math.ceil(window.innerWidth / fontSize);
     const drops = Array(columns).fill(1);
     
     let animationFrameId;
     let lastTime = 0;
-    const fps = 30;
+    const fps = ANIMATION_CONFIG.fps;
     const frameInterval = 1000 / fps;
 
     const draw = (currentTime) => {
@@ -98,9 +98,9 @@ const MatrixRain = () => {
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
       style={{ 
-        opacity: isDark ? 0.8 : 0.6, 
+        opacity: isDark ? ANIMATION_CONFIG.matrixOpacity.dark : ANIMATION_CONFIG.matrixOpacity.light, 
         zIndex: 0,
-        background: isDark ? 'black' : 'white'
+        background: isDark ? THEME_COLORS.dark.background : THEME_COLORS.light.background
       }}
     />
   );

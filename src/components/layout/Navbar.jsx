@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudMoon, faCloudSun, faTimes, faBars, faCode, faUser, faLaptopCode, faDiagramProject, faHome } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
 import gsap from 'gsap';
+import { NAV_ITEMS, SOCIAL_LINKS } from '../../constants';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -70,17 +70,8 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const navItems = [
-    { name: 'Home', path: '/', icon: faHome },
-    { name: 'About', path: '/about', icon: faUser },
-    { name: 'Skillset', path: '/skillset', icon: faLaptopCode },
-    { name: 'Projects', path: '/projects', icon: faDiagramProject },
-  ];
-
-  const socialLinks = [
-    { icon: faGithub, url: 'https://github.com/Ellisvelandia', label: 'GitHub' },
-    { icon: faLinkedin, url: 'https://linkedin.com/in/ellisvelandia', label: 'LinkedIn' },
-  ];
+  const navItems = NAV_ITEMS;
+  const socialLinks = SOCIAL_LINKS;
 
   const isActive = (path) => {
     return location.pathname === path;

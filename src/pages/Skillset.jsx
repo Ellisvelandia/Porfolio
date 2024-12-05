@@ -2,33 +2,14 @@ import React, { useState } from "react";
 import SkillCard from "../components/skillset/SkillCard";
 import PageLayout from "../components/layout/PageLayout";
 import { useTheme } from "../context/ThemeContext";
+import { SKILL_CATEGORIES, SKILLS } from '../constants';
 
 const Skillset = () => {
   const [filter, setFilter] = useState("all");
   const { theme } = useTheme();
 
-  const categories = [
-    { id: "all", label: "All Skills" },
-    { id: "programming", label: "Programming" },
-    { id: "frontend", label: "Frontend" },
-    { id: "backend", label: "Backend" },
-    { id: "tools", label: "Tools & Services" },
-  ];
-
-  const skills = [
-    { name: "React", category: "frontend", icon: "⚛️" },
-    { name: "Node.js", category: "backend", icon: "🟢" },
-    { name: "JavaScript", category: "programming", icon: "📜" },
-    { name: "TypeScript", category: "programming", icon: "📘" },
-    { name: "HTML", category: "frontend", icon: "🌐" },
-    { name: "CSS", category: "frontend", icon: "🎨" },
-    { name: "TailwindCSS", category: "frontend", icon: "💨" },
-    { name: "Git", category: "tools", icon: "📚" },
-    { name: "MongoDB", category: "backend", icon: "🍃" },
-    { name: "Express", category: "backend", icon: "🚂" },
-    { name: "Python", category: "programming", icon: "🐍" },
-    { name: "VS Code", category: "tools", icon: "👨‍💻" },
-  ];
+  const categories = SKILL_CATEGORIES;
+  const skills = SKILLS;
 
   const filteredSkills =
     filter === "all"
