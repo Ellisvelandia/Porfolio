@@ -24,7 +24,7 @@ const Certifications = () => {
         Certifications
       </h2>
       
-      <div className="grid grid-cols-1 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {certifications.map((cert) => (
           <div
             key={cert.id}
@@ -53,7 +53,7 @@ const Certifications = () => {
             </div>
 
             {cert.img && (
-              <div className="mb-3 sm:mb-4 w-full aspect-[16/9]">
+              <div className="mb-3 sm:mb-4 w-full aspect-[16/9] sm:aspect-[4/3]">
                 <img
                   src={cert.img}
                   alt={cert.name}
@@ -70,7 +70,7 @@ const Certifications = () => {
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-block text-xs sm:text-base px-2 sm:px-4 py-1 sm:py-2 rounded-md ${
+                  className={`inline-block text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-md ${
                     theme === 'dark'
                       ? 'bg-matrix-darkest/60 text-matrix-accent-dark hover:bg-matrix-accent-dark/20'
                       : 'bg-emerald-50/90 text-emerald-600 hover:bg-emerald-100/90'
